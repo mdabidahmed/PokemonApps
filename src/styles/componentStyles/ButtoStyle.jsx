@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const ButtonStyles = StyleSheet.create({
   container: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#007bff', // Primary color
+    // backgroundColor: '#007bff', // Primary color
   },
   text: {
     color: '#fff',
@@ -15,7 +15,6 @@ const ButtonStyles = StyleSheet.create({
 });
 
 export default ButtonStyles;
-
 
 //-------------------------------------------------
 // import React from 'react';
