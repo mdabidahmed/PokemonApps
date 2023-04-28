@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
 const Card = ({pokemon, loading, infoPokemon}) => {
   const renderItem = ({item}) => {
     const imageUrl = item.sprites.other.dream_world.front_default;
