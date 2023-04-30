@@ -18,21 +18,12 @@ const Card = ({pokemon, loading, infoPokemon}) => {
           <LinearGradient
             colors={['#acb6e5', '#86fde8']}
             style={{borderRadius: 10}}>
-            {imageUrl != undefined ? (
+            {imageUrl && (
               <Image
                 source={require('../assets/bulbasaur.png')}
                 style={{
                   width: 180,
                   height: 160,
-                  resizeMode: 'contain',
-                }}
-              />
-            ) : (
-              <Image
-                source={require('../assets/placeholder.png')}
-                style={{
-                  width: 150,
-                  height: 150,
                   resizeMode: 'contain',
                 }}
               />
@@ -62,7 +53,6 @@ const CardStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    backgroundColor: '#79b2f428',
   },
   card: {
     borderWidth: 0.5,
@@ -80,12 +70,12 @@ const CardStyles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '700',
     paddingVertical: 5,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    color: '#8E2DE2',
+    color: 'black',
     textTransform: 'capitalize',
     fontFamily: 'roboto',
   },

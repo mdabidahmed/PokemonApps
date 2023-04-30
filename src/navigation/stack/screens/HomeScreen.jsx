@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Card from '../../../components/Card';
 const HomeScreenComponent = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -36,25 +36,40 @@ const HomeScreenComponent = () => {
   }, [url]);
 
   return (
-    <ScrollView>
+    <View style={HomeStyles.container}>
+      <Card
+        pokemon={pokeData}
+        loading={loading}
+        infoPokemon={poke => setPokeDex(poke)}
+      />
+
       <View>
-        <Card
-          pokemon={pokeData}
-          loading={loading}
-          infoPokemon={poke => setPokeDex(poke)}
-        />
-      </View>
-      <View style={{marginBottom: 10}}>
-        {prevUrl && (
-          <TouchableOpacity
-            onPress={() => {
-              setPokeData([]);
-              setUrl(prevUrl);
+        <TouchableOpacity
+          disabled={prevUrl === null ? true : false}
+          onPress={() => {
+            setPokeData([]);
+            setUrl(prevUrl);
+          }}
+          style={{
+            pointerEvents: prevUrl ? 'auto' : 'none',
+            // backgroundColor: prevUrl ? 'yellow' : 'red',
+            // padding: 10,
+            marginVertical: 5,
+            marginRight: 5,
+            padding: 3,
+            position: 'absolute',
+            right: '50%',
+          }}>
+          <Image
+            source={require('../../../assets/previous.png')}
+            style={{
+              width: 24,
+              height: 24,
+              resizeMode: 'contain',
             }}
-            style={{backgroundColor: 'blue', padding: 10}}>
-            <Text style={{color: 'white', fontSize: 18}}>Previous</Text>
-          </TouchableOpacity>
-        )}
+          />
+        </TouchableOpacity>
+
         {nextUrl && (
           <TouchableOpacity
             onPress={() => {
@@ -62,18 +77,46 @@ const HomeScreenComponent = () => {
               setUrl(nextUrl);
             }}
             style={{
-              backgroundColor: 'blue',
-              padding: 100,
+              marginVertical: 5,
               position: 'absolute',
-              top: 30,
-              left: 30,
-              zIndex: 1,
+              // top: 30,
+              padding: 3,
+              left: '50%',
+              // zIndex: 1,
             }}>
-            <Text style={{color: 'black', fontSize: 18}}>Next</Text>
+            <Image
+              source={require('../../../assets/next.png')}
+              style={{
+                width: 24,
+                height: 24,
+                resizeMode: 'contain',
+              }}
+            />
           </TouchableOpacity>
         )}
       </View>
-    </ScrollView>
+    </View>
   );
 };
+
+const HomeStyles = StyleSheet.create({
+  container: {
+    paddingBottom: 30,
+    marginBottom: 5,
+    // backgroundColor: '#79b2f428',
+  },
+  button: {
+    position: 'absolute',
+    // bottom: 20,
+    // right: 20,
+    backgroundColor: '#2196F3',
+    borderRadius: 10,
+    paddingVertical: 10,
+    // paddingHorizontal: 20,
+  },
+  title: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+});
 export default HomeScreenComponent;
