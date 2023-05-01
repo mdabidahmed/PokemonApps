@@ -43,6 +43,7 @@ const Card = ({pokemon, loading, infoPokemon}) => {
         numColumns={2}
         renderItem={renderItem}
         keyExtractor={item => item.id}
+        contentContainerStyle={{flexGrow: 1}}
       />
     </View>
   );
@@ -53,14 +54,13 @@ const CardStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
+    flex: 1,
   },
   card: {
     borderWidth: 0.5,
     borderColor: 'black',
     borderRadius: 10,
     borderStyle: 'dashed',
-    // paddingVertical: 10,
-    // paddingHorizontal: 20,
     marginVertical: 10,
     marginHorizontal: 10,
     shadowColor: '#171717',
