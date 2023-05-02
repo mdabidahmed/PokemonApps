@@ -1,4 +1,5 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useContext} from 'react';
 import {
   FlatList,
   Image,
@@ -8,12 +9,34 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {PokemonContext} from '../context/PokemonContext';
 const Card = ({pokemon, loading, infoPokemon}) => {
+  const navigation = useNavigation();
+
+  const {
+    url,
+    allPokemons,
+    globalPokemons,
+    getPokemonByID,
+    onClickLoadMore,
+    genderList,
+    pokemonDetails,
+    pokemonDescription,
+    handlePokemonPress,
+    fetchDescription,
+  } = useContext(PokemonContext);
+
   const renderItem = ({item}) => {
     const imageUrl = item.sprites.other.dream_world.front_default;
+    const handlePress = () => {
+      console.log('item-->', item);
+      // handlePokemonPress(item);
+      fetchDescription(item.id);
+      navigation.navigate('DetailsPage', {item});
+    };
+
     return (
-      <TouchableOpacity onClick={() => infoPokemon(item)}>
+      <TouchableOpacity onPress={handlePress}>
         <View style={CardStyles.card}>
           <LinearGradient
             colors={['#acb6e5', '#86fde8']}
