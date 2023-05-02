@@ -13,10 +13,14 @@ const Navigation = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{headerShown: false}}
-          name="Pokedex"
+          name="Pokemon list"
           component={HomeScreenComponent}
         />
-        <Stack.Screen name="DetailsPage" component={DetailsScreenComponent} />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Pokemon Details"
+          component={DetailsScreenComponent}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {PokemonContext} from '../context/PokemonContext';
+import {addLeadingZeros} from '../utils/LeadingZeros';
 const Card = ({pokemon, loading, infoPokemon}) => {
   const navigation = useNavigation();
 
@@ -32,7 +33,7 @@ const Card = ({pokemon, loading, infoPokemon}) => {
       console.log('item-->', item);
       // handlePokemonPress(item);
       fetchDescription(item.id);
-      navigation.navigate('DetailsPage', {item});
+      navigation.navigate('Pokemon Details', {item});
     };
 
     return (
@@ -52,7 +53,7 @@ const Card = ({pokemon, loading, infoPokemon}) => {
               />
             )}
             <Text style={CardStyles.heading}>{item.name}</Text>
-            <Text style={CardStyles.heading}>#{item.id}</Text>
+            <Text style={CardStyles.heading}>{addLeadingZeros(item.id)}</Text>
           </LinearGradient>
         </View>
       </TouchableOpacity>
@@ -98,9 +99,10 @@ const CardStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    color: 'black',
+    color: '#191654',
     textTransform: 'capitalize',
     fontFamily: 'roboto',
+    letterSpacing: 1,
   },
 });
 export default Card;
