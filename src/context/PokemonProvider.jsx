@@ -19,7 +19,7 @@ export const PokemonProvider = ({children}) => {
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState([]);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
 
-  console.log('pokemonList--->', pokemonList);
+  // console.log('allPokemons--->', allPokemons);
   useEffect(() => {
     // // Fetch Pokemon List
     // axios
@@ -32,17 +32,60 @@ export const PokemonProvider = ({children}) => {
     //   });
 
     // Fetch Gender List
-    axios
-      .get(`${API_BASE_URL}/gender`)
-      .then(response => {
-        setGenderList(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // axios
+    //   .get(`${API_BASE_URL}/gender`)
+    //   .then(response => {
+    //     setGenderList(response.data.results);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
 
     fetchDescription();
+    // Fetch Gender List
+
+    fetchGender();
   }, []);
+
+  const fetchGender = async pokemonName => {
+    const urls = [
+      'https://pokeapi.co/api/v2/gender/1/',
+      'https://pokeapi.co/api/v2/gender/2/',
+      'https://pokeapi.co/api/v2/gender/3/',
+    ];
+
+    const responses = await Promise.all(urls.map(url => fetch(url)));
+    const data = await Promise.all(responses.map(response => response.json()));
+    // console.log("gender-->", data);
+
+    const genders = [];
+    data.forEach(gender => {
+      if (gender.name === 'female') {
+        gender.pokemon_species_details.forEach(pokemon => {
+          if (pokemon.pokemon_species.name === pokemonName) {
+            return genders.push('female');
+          }
+        });
+      }
+      if (gender.name === 'male') {
+        gender.pokemon_species_details.forEach(pokemon => {
+          if (pokemon.pokemon_species.name === pokemonName) {
+            return genders.push('male');
+          }
+        });
+      }
+      if (gender.name === 'genderless') {
+        gender.pokemon_species_details.forEach(pokemon => {
+          if (pokemon.pokemon_species.name === pokemonName) {
+            return genders.push('genderless');
+          }
+        });
+      }
+    });
+
+    setGenderList(genders);
+  };
+
   const fetchDescription = id => {
     axios
       .get(`${API_BASE_URL}/pokemon-species/${id}`)
@@ -266,6 +309,7 @@ export const PokemonProvider = ({children}) => {
         pokemonDescription,
         handlePokemonPress,
         fetchDescription,
+        fetchGender,
         url,
         // valueSearch,
         // onInputChange,

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {PokemonContext} from '../../../../src/context/PokemonContext';
+import BadgeButton from '../../../components/BadgeButton';
 import {addLeadingZeros} from '../../../utils/LeadingZeros';
 const DetailsScreenComponent = item => {
   // console.log('params--->', item.route.params.item);
@@ -30,6 +31,7 @@ const DetailsScreenComponent = item => {
     pokemonDescription,
     handlePokemonPress,
     fetchDescription,
+    fetchGender,
   } = useContext(PokemonContext);
 
   // console.log(allPokemons, globalPokemons, getPokemonByID, onClickLoadMore);
@@ -37,9 +39,9 @@ const DetailsScreenComponent = item => {
   // console.log('globalPokemons-->', globalPokemons);
   // console.log('getPokemonByID', getPokemonByID(1));
   // console.log('onClickLoadMore', onClickLoadMore);
-  console.log('Description****************', pokemonDescription);
-  console.log('genderList', genderList);
-  console.log('pokemonDetails', pokemonDetails);
+  // console.log('Description****************', pokemonDescription);
+  // console.log('function', fetchGender('bulbasaur'));
+  // console.log('type-->', pokemon.types);
   const onClose = () => {
     navigation.navigate('Pokemon list');
   };
@@ -47,6 +49,7 @@ const DetailsScreenComponent = item => {
     setModalVisible(true);
   };
   // const res = getPokemonByID(pokemon.id);
+  fetchGender(pokemon.name);
   return (
     <SafeAreaView>
       <ScrollView>
@@ -134,17 +137,41 @@ const DetailsScreenComponent = item => {
           <View style={styles.row}>
             <View style={styles.item}>
               <Text style={styles.label}>Gender(s)</Text>
-              <View style={styles.gender}>
-                {genderList.map((item, index) => (
-                  <Text key={index} style={styles.value}>
-                    {item.name}
-                    {index !== genderList.length - 1 && <Text>, </Text>}
-                  </Text>
-                ))}
+              <View style={styles.fdrow}>
+                {genderList &&
+                  genderList.map((item, index) => (
+                    <Text style={styles.value} key={index}>
+                      {item}
+                      {index !== genderList.length - 1 && <Text>, </Text>}
+                    </Text>
+                  ))}
               </View>
             </View>
             <View style={styles.item}>
-              <Text>Row2</Text>
+              <Text style={styles.label}>Weight</Text>
+              <View>
+                <Text style={[styles.value]}>{pokemon.weight} Kg</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.item}>
+              <Text style={styles.label}>Height</Text>
+              <View style={styles.fdrow}>
+                <Text style={[styles.value]}>{pokemon.height}</Text>
+              </View>
+            </View>
+            <View style={styles.item}>
+              <Text style={styles.label}>Types</Text>
+              <View style={styles.fdrow}>
+                {pokemon.types.map(item => (
+                  <View
+                    key={item.slot}
+                    style={{paddingRight: 10, paddingTop: 5}}>
+                    <BadgeButton badgeText={item.type.name} />
+                  </View>
+                ))}
+              </View>
             </View>
           </View>
         </View>
@@ -193,42 +220,29 @@ const DetailsScreenComponent = item => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: 'column',
     paddingHorizontal: 16,
     paddingVertical: 24,
-    // padding: 16,
   },
   readMore: {
     color: 'blue',
     textDecorationLine: 'underline',
   },
   row: {
-    // flex: 1,
     flexDirection: 'row',
   },
   description: {
-    // flexDirection: 'row',
-    // justifyContent: 'center',
-    // paddingTop: 100,
     width: 200,
-    // color: 'black',
   },
   descriptionText: {
     color: 'black',
     fontSize: 16,
-    // alignItems: 'center',
   },
   item: {
-    // flex: 1,
-    // backgroundColor: '#ccc',
     margin: 5,
   },
   close: {
-    // flexDirection: 'row',
-    // alignItems: 'end',
     flex: 1,
-    // justifyContent: 'center',
     alignItems: 'flex-end',
   },
   label: {
@@ -236,7 +250,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: 'black',
   },
-  gender: {
+  fdrow: {
     flexDirection: 'row',
   },
   value: {
@@ -249,10 +263,6 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: '700',
-    // paddingVertical: 5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
     color: '#191654',
     textTransform: 'uppercase',
     fontFamily: 'roboto',
@@ -263,10 +273,9 @@ const styles = StyleSheet.create({
     borderColor: '#191654',
     borderRadius: 10,
     borderStyle: 'dashed',
-    // marginVertical: 10,
     marginHorizontal: 10,
     shadowColor: '#171717',
-    // shadowOffset: {width: -2, height: 4},
+    shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
@@ -292,18 +301,17 @@ const styles = StyleSheet.create({
   modalDescription: {
     fontSize: 16,
     lineHeight: 24,
-    // marginVertical: 10,
     color: 'white',
   },
   closeButton: {
-    // color: 'blue',
-    // textDecorationLine: 'underline',
     position: 'absolute',
     bottom: 320,
     left: 140,
-    // backgroundColor: 'white',
     width: 30,
     height: 32,
+  },
+  sectionRight: {
+    paddingLeft: 100,
   },
 });
 
