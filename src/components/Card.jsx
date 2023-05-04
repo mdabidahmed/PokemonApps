@@ -9,7 +9,11 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {COLORS} from '../constants/color';
 import {PokemonContext} from '../context/PokemonContext';
+
+import {URL} from '../constants/url';
+
 import {addLeadingZeros} from '../utils/leadingZeros';
 const Card = ({pokemon, loading, infoPokemon}) => {
   const navigation = useNavigation();
@@ -28,25 +32,24 @@ const Card = ({pokemon, loading, infoPokemon}) => {
   } = useContext(PokemonContext);
 
   const renderItem = ({item}) => {
+    const multiColors = item?.types?.map(({type}) => COLORS[type['name']]);
+    const singleColor = ['#acb6e5', '#86fde8'];
     const imageUrl = item.sprites.other.dream_world.front_default;
     const handlePress = () => {
-      console.log('item-->', item);
-      // handlePokemonPress(item);
       fetchDescription(item.id);
       navigation.navigate('Pokemon Details', {item});
     };
 
+    const ColorGenerate = () => {
+      return multiColors.length >= 2 ? multiColors : singleColor;
+    };
     return (
       <TouchableOpacity onPress={handlePress}>
         <View style={CardStyles.card}>
-          <LinearGradient
-            colors={['#acb6e5', '#86fde8']}
-            style={{borderRadius: 10}}>
+          <LinearGradient colors={ColorGenerate()} style={{borderRadius: 10}}>
             {imageUrl && (
               <Image
-                source={{
-                  uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${item.name}.png`,
-                }}
+                source={{uri: `${URL}/${item.name}.png`}}
                 style={{
                   width: 180,
                   height: 160,

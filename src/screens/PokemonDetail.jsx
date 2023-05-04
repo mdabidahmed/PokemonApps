@@ -12,13 +12,14 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ProgressBar from 'react-native-progress/Bar';
-import {PokemonContext} from '../../../../src/context/PokemonContext';
-import BadgeButton from '../../../components/BadgeButton';
-import {getPokemonType} from '../../../services/api';
-import {addLeadingZeros} from '../../../utils/leadingZeros';
-import {meters_to_feet_and_inches} from '../../../utils/lengthUtils';
-import {covert_Weight_to_Kg} from '../../../utils/weightUtils';
-const DetailsScreenComponent = item => {
+import BadgeButton from '../components/BadgeButton';
+import {URL} from '../constants/url';
+import {PokemonContext} from '../context/PokemonContext';
+import {getPokemonType} from '../services/api';
+import {addLeadingZeros} from '../utils/leadingZeros';
+import {meters_to_feet_and_inches} from '../utils/lengthUtils';
+import {covert_Weight_to_Kg} from '../utils/weightUtils';
+const PokemonDetailComponent = item => {
   // console.log('params--->', item.route.params.item.id);
   const pokemon = item.route.params.item;
 
@@ -83,7 +84,7 @@ const DetailsScreenComponent = item => {
             <View style={[styles.item, styles.close]}>
               <TouchableOpacity onPress={onClose}>
                 <Image
-                  source={require('../../../assets/remove.png')}
+                  source={require('../assets/remove.png')}
                   style={{
                     width: 24,
                     height: 24,
@@ -102,9 +103,7 @@ const DetailsScreenComponent = item => {
                   style={{borderRadius: 10}}>
                   <View style={styles.image}>
                     <Image
-                      source={{
-                        uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${pokemon.name}.png`,
-                      }}
+                      source={{uri: `${URL}/${pokemon.name}.png`}}
                       style={{
                         width: 160,
                         height: 200,
@@ -142,7 +141,7 @@ const DetailsScreenComponent = item => {
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <Text style={styles.closeButton}>
                       <Image
-                        source={require('../../../assets/cancel.png')}
+                        source={require('../assets/cancel.png')}
                         style={{
                           width: 24,
                           height: 24,
@@ -400,7 +399,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailsScreenComponent;
+export default PokemonDetailComponent;
 
 {
   /* <View>

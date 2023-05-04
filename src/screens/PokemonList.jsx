@@ -9,9 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Card from '../../../components/Card';
-import HeaderComponent from '../../../components/Header';
-const HomeScreenComponent = () => {
+import Card from '../components/Card';
+import HeaderComponent from '../components/header/Header';
+const PokemonListComponent = () => {
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
@@ -73,7 +73,7 @@ const HomeScreenComponent = () => {
   };
 
   return (
-    <View style={HomeStyles.container}>
+    <View style={PokemonListStyles.container}>
       <View>
         <HeaderComponent
           title="Pokedex"
@@ -81,10 +81,10 @@ const HomeScreenComponent = () => {
         />
       </View>
       {/* Start */}
-      <View style={HomeStyles.filterContainer}>
-        <View style={HomeStyles.inputContainer}>
+      <View style={PokemonListStyles.filterContainer}>
+        <View style={PokemonListStyles.inputContainer}>
           <TextInput
-            style={HomeStyles.input}
+            style={PokemonListStyles.input}
             placeholder="Search pokemon here"
             value={searchQuery}
             onChangeText={text => {
@@ -98,7 +98,7 @@ const HomeScreenComponent = () => {
 
           <TouchableOpacity onPress={handleFilterIconPress}>
             <Image
-              source={require('../../../assets/filter.png')}
+              source={require('../assets/filter.png')}
               style={{
                 width: 24,
                 height: 24,
@@ -108,7 +108,7 @@ const HomeScreenComponent = () => {
           </TouchableOpacity>
         </View>
         <Modal visible={showModal} animationType="slide">
-          <View style={HomeStyles.modalContainer}>
+          <View style={PokemonListStyles.modalContainer}>
             <Text>Filter options go here</Text>
             <TouchableOpacity onPress={handleCloseModal}>
               <Text>Close</Text>
@@ -117,7 +117,7 @@ const HomeScreenComponent = () => {
         </Modal>
       </View>
       {/* end */}
-      <View style={{height: 560}}>
+      <View style={{height: 490}}>
         <Card
           pokemon={filteredPokemonList}
           loading={loading}
@@ -125,49 +125,21 @@ const HomeScreenComponent = () => {
         />
       </View>
 
-      <View>
-        <TouchableOpacity
-          disabled={prevUrl === null ? true : false}
-          onPress={() => {
-            setPokeData([]);
-            setFilteredPokemonList([]);
-            setUrl(prevUrl);
-          }}
-          style={{
-            pointerEvents: prevUrl ? 'auto' : 'none',
-            paddingTop: 10,
-            marginRight: 5,
-            top: -100,
-            bottom: 0,
-            position: 'absolute',
-            right: '50%',
-          }}>
-          <Image
-            source={require('../../../assets/previous.png')}
-            style={{
-              width: 24,
-              height: 24,
-              resizeMode: 'contain',
-            }}
-          />
-        </TouchableOpacity>
-
-        {nextUrl && (
+      <View style={PokemonListStyles.paginationSection}>
+        <View style={PokemonListStyles.prevBtn}>
           <TouchableOpacity
+            disabled={prevUrl === null ? true : false}
             onPress={() => {
               setPokeData([]);
               setFilteredPokemonList([]);
-              setUrl(nextUrl);
+              setUrl(prevUrl);
             }}
             style={{
+              pointerEvents: prevUrl ? 'auto' : 'none',
               paddingTop: 1,
-              position: 'absolute',
-              top: -100,
-              right: '40%',
-              bottom: 0,
             }}>
             <Image
-              source={require('../../../assets/next.png')}
+              source={require('../assets/previous.png')}
               style={{
                 width: 24,
                 height: 24,
@@ -175,16 +147,38 @@ const HomeScreenComponent = () => {
               }}
             />
           </TouchableOpacity>
-        )}
+        </View>
+        <View style={PokemonListStyles}>
+          {nextUrl && (
+            <TouchableOpacity
+              onPress={() => {
+                setPokeData([]);
+                setFilteredPokemonList([]);
+                setUrl(nextUrl);
+              }}
+              style={{
+                paddingTop: 1,
+              }}>
+              <Image
+                source={require('../assets/next.png')}
+                style={{
+                  width: 24,
+                  height: 24,
+                  resizeMode: 'contain',
+                }}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </View>
   );
 };
 
-const HomeStyles = StyleSheet.create({
+const PokemonListStyles = StyleSheet.create({
   container: {
-    paddingBottom: 30,
-    marginBottom: 5,
+    // paddingBottom: 30,
+    // marginBottom: 5,
   },
   button: {
     position: 'absolute',
@@ -223,5 +217,18 @@ const HomeStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  paginationSection: {
+    width: '100%',
+    height: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#fff',
+    // backgroundColor: 'red',
+  },
+  prevBtn: {
+    marginRight: 20,
+  },
 });
-export default HomeScreenComponent;
+export default PokemonListComponent;

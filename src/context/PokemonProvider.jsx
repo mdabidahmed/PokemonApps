@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 // import {useForm} from '../hook/useForm';
 import axios from 'axios';
 
+import {URL_GENDER} from '../constants/url';
 import {PokemonContext} from './PokemonContext';
 export const API_BASE_URL = 'https://pokeapi.co/api/v2';
 export const PokemonProvider = ({children}) => {
@@ -19,43 +20,21 @@ export const PokemonProvider = ({children}) => {
   const [pokemonWeaknesses, setPokemonWeaknesses] = useState([]);
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState([]);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
-
-  // console.log('weakAgainst--->', weakAgainst);
   useEffect(() => {
-    // // Fetch Pokemon List
-    // axios
-    //   .get(`${API_BASE_URL}/pokemon`)
-    //   .then(response => {
-    //     setPokemonList(response.data.results);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-
-    // Fetch Gender List
-    // axios
-    //   .get(`${API_BASE_URL}/gender`)
-    //   .then(response => {
-    //     setGenderList(response.data.results);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-
+    // Fetch Description
     fetchDescription();
     // Fetch Gender List
-
     fetchGender();
   }, []);
 
   const fetchGender = async pokemonName => {
-    const urls = [
-      'https://pokeapi.co/api/v2/gender/2/',
-      'https://pokeapi.co/api/v2/gender/1/',
-      'https://pokeapi.co/api/v2/gender/3/',
-    ];
+    // const urls = [
+    //   'https://pokeapi.co/api/v2/gender/2/',
+    //   'https://pokeapi.co/api/v2/gender/1/',
+    //   'https://pokeapi.co/api/v2/gender/3/',
+    // ];
 
-    const responses = await Promise.all(urls.map(url => fetch(url)));
+    const responses = await Promise.all(URL_GENDER.map(url => fetch(url)));
     const data = await Promise.all(responses.map(response => response.json()));
     // console.log("gender-->", data);
 

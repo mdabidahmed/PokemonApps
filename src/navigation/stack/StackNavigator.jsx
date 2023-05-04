@@ -2,8 +2,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 
-import DetailsScreenComponent from './screens/DetailsScreen';
-import HomeScreenComponent from './screens/HomeScreen';
+import PokemonDetailComponent from '../../screens/PokemonDetail';
+import PokemonListComponent from '../../screens/PokemonList';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,12 +14,12 @@ const Navigation = () => {
         <Stack.Screen
           options={{headerShown: false}}
           name="Pokemon list"
-          component={HomeScreenComponent}
+          component={PokemonListComponent}
         />
         <Stack.Screen
           options={{headerShown: false}}
           name="Pokemon Details"
-          component={DetailsScreenComponent}
+          component={PokemonDetailComponent}
         />
       </Stack.Navigator>
     </NavigationContainer>
