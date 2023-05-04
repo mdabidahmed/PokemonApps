@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {PokemonContext} from '../context/PokemonContext';
-import {addLeadingZeros} from '../utils/LeadingZeros';
+import {addLeadingZeros} from '../utils/leadingZeros';
 const Card = ({pokemon, loading, infoPokemon}) => {
   const navigation = useNavigation();
 
@@ -44,16 +44,20 @@ const Card = ({pokemon, loading, infoPokemon}) => {
             style={{borderRadius: 10}}>
             {imageUrl && (
               <Image
-                source={require('../assets/bulbasaur.png')}
+                source={{
+                  uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${item.name}.png`,
+                }}
                 style={{
                   width: 180,
                   height: 160,
-                  resizeMode: 'contain',
+                  resizeMode: 'cover',
                 }}
               />
             )}
-            <Text style={CardStyles.heading}>{item.name}</Text>
-            <Text style={CardStyles.heading}>{addLeadingZeros(item.id)}</Text>
+            <View style={CardStyles.cardContent}>
+              <Text style={CardStyles.heading}>{item.name}</Text>
+              <Text style={CardStyles.heading}>{addLeadingZeros(item.id)}</Text>
+            </View>
           </LinearGradient>
         </View>
       </TouchableOpacity>
@@ -81,28 +85,30 @@ const CardStyles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'black',
     borderRadius: 10,
     borderStyle: 'dashed',
     marginVertical: 10,
     marginHorizontal: 10,
     shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
+    // shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
   heading: {
     fontSize: 20,
     fontWeight: '700',
-    paddingVertical: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    color: '#191654',
+    // paddingVertical: 2,
+    textAlign: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // alignSelf: 'center',
+    color: '#1A237E',
     textTransform: 'capitalize',
     fontFamily: 'roboto',
     letterSpacing: 1,
   },
+  cardContent: {paddingBottom: 20},
 });
 export default Card;

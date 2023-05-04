@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {generateRandomColor} from '../utils/randomColor';
 const BadgeButton = ({badgeText, onPress}) => {
-  const [backgroundColor, setBackgroundColor] = useState('#DDCBDO');
+  const [backgroundColor, setBackgroundColor] = useState('#FCC1B0');
   useEffect(() => {
     setBackgroundColor(generateRandomColor());
   }, []);
@@ -10,7 +10,7 @@ const BadgeButton = ({badgeText, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.button}>
-        <View style={{backgroundColor: backgroundColor, borderRadius: 10}}>
+        <View style={{backgroundColor: backgroundColor, borderRadius: 5}}>
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{badgeText}</Text>
           </View>
@@ -23,9 +23,10 @@ const BadgeButton = ({badgeText, onPress}) => {
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
+    marginTop: 5,
   },
   badge: {
-    borderRadius: 10,
+    borderRadius: 5,
     paddingHorizontal: 10,
     paddingTop: 3,
     paddingBottom: 4,
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     textAlignVertical: 'center',
+    textTransform: 'capitalize',
   },
 });
 

@@ -97,7 +97,6 @@ export const colorsToken = {
 
 export const badgeColorTokens = [
   // COLOR TOKEN
-  '#DDCBDO',
   '#FCC1B0',
   '#B2D2E8',
   '#CFB7ED',
@@ -105,16 +104,11 @@ export const badgeColorTokens = [
   '#c5AE8',
   '#C1E0C8',
   '#D7C2D7',
-  '#C2D4CE',
   '#EDC2C4',
   '#CBD5ED',
   '#C0D4C8',
   '#E2E2A0',
   '#DDC0CF',
-  '#C7D7DF',
   '#CADCDF',
-  '#C6C5E3',
-  '#E4C0CF',
   '#C0DFDD',
-  '#CACACA',
 ];

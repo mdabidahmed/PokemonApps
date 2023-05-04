@@ -1,6 +1,14 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import React, {startTransition, useEffect, useState} from 'react';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Card from '../../../components/Card';
 import HeaderComponent from '../../../components/Header';
 const HomeScreenComponent = () => {
@@ -12,7 +20,7 @@ const HomeScreenComponent = () => {
   const [pokeDex, setPokeDex] = useState();
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
-
+  const [filteredPokemonList, setFilteredPokemonList] = useState(pokeData);
   const handleInputChange = text => {
     setSearchQuery(text);
     // perform search logic here
@@ -42,11 +50,27 @@ const HomeScreenComponent = () => {
         state.sort((a, b) => (a.id > b.id ? 1 : -1));
         return state;
       });
+      setFilteredPokemonList(state => {
+        state = [...state, result.data];
+        state.sort((a, b) => (a.id > b.id ? 1 : -1));
+        return state;
+      });
     });
   };
   useEffect(() => {
     pokeFun();
   }, [url]);
+
+  const filterPokemonResults = searchText => {
+    const filteredPokemon = pokeData?.filter(pokemon => {
+      return (
+        pokemon.name.toLowerCase().startsWith(searchText.toLowerCase()) ||
+        pokemon.id.toString().includes(searchText)
+      );
+    });
+
+    return filteredPokemon;
+  };
 
   return (
     <View style={HomeStyles.container}>
@@ -56,14 +80,20 @@ const HomeScreenComponent = () => {
           description="Search for any Pokemon that exists on the planet"
         />
       </View>
-
-      {/* <View style={HomeStyles.filterContainer}>
+      {/* Start */}
+      <View style={HomeStyles.filterContainer}>
         <View style={HomeStyles.inputContainer}>
           <TextInput
             style={HomeStyles.input}
-            placeholder="Search"
+            placeholder="Search pokemon here"
             value={searchQuery}
-            onChangeText={handleInputChange}
+            onChangeText={text => {
+              setSearchQuery(text);
+              startTransition(() => {
+                const updatedPokemon = filterPokemonResults(text);
+                setFilteredPokemonList(updatedPokemon);
+              });
+            }}
           />
 
           <TouchableOpacity onPress={handleFilterIconPress}>
@@ -85,11 +115,11 @@ const HomeScreenComponent = () => {
             </TouchableOpacity>
           </View>
         </Modal>
-      </View> */}
-
+      </View>
+      {/* end */}
       <View style={{height: 560}}>
         <Card
-          pokemon={pokeData}
+          pokemon={filteredPokemonList}
           loading={loading}
           infoPokemon={poke => setPokeDex(poke)}
         />
@@ -100,13 +130,14 @@ const HomeScreenComponent = () => {
           disabled={prevUrl === null ? true : false}
           onPress={() => {
             setPokeData([]);
+            setFilteredPokemonList([]);
             setUrl(prevUrl);
           }}
           style={{
             pointerEvents: prevUrl ? 'auto' : 'none',
-            paddingTop: 1,
+            paddingTop: 10,
             marginRight: 5,
-            top: 1,
+            top: -100,
             bottom: 0,
             position: 'absolute',
             right: '50%',
@@ -125,12 +156,13 @@ const HomeScreenComponent = () => {
           <TouchableOpacity
             onPress={() => {
               setPokeData([]);
+              setFilteredPokemonList([]);
               setUrl(nextUrl);
             }}
             style={{
               paddingTop: 1,
               position: 'absolute',
-              top: 1,
+              top: -100,
               right: '40%',
               bottom: 0,
             }}>
@@ -178,7 +210,13 @@ const HomeStyles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     fontSize: 18,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 4,
+    marginVertical: 4,
+    marginRight: 8,
+    borderColor: 'black',
+    borderWidth: 1.5,
   },
   modalContainer: {
     flex: 1,

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 // import {useForm} from '../hook/useForm';
 import axios from 'axios';
+
 import {PokemonContext} from './PokemonContext';
 export const API_BASE_URL = 'https://pokeapi.co/api/v2';
 export const PokemonProvider = ({children}) => {
@@ -19,7 +20,7 @@ export const PokemonProvider = ({children}) => {
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState([]);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
 
-  // console.log('allPokemons--->', allPokemons);
+  // console.log('weakAgainst--->', weakAgainst);
   useEffect(() => {
     // // Fetch Pokemon List
     // axios
@@ -49,8 +50,8 @@ export const PokemonProvider = ({children}) => {
 
   const fetchGender = async pokemonName => {
     const urls = [
-      'https://pokeapi.co/api/v2/gender/1/',
       'https://pokeapi.co/api/v2/gender/2/',
+      'https://pokeapi.co/api/v2/gender/1/',
       'https://pokeapi.co/api/v2/gender/3/',
     ];
 
