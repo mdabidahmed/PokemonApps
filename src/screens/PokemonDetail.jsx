@@ -71,9 +71,7 @@ const PokemonDetailComponent = item => {
           <View style={PokemonDetailsStyles.row}>
             <View style={PokemonDetailsStyles.item}>
               <View style={PokemonDetailsStyles.card}>
-                <LinearGradient
-                  colors={['#acb6e5', '#86fde8']}
-                  style={{borderRadius: 10}}>
+                <LinearGradient colors={['#acb6e5', '#86fde8']}>
                   <View style={PokemonDetailsStyles.image}>
                     <Image
                       source={{
@@ -97,9 +95,10 @@ const PokemonDetailComponent = item => {
                   pokemonDescription.flavor_text_entries.find(
                     entry => entry.language.name === 'en',
                   ).flavor_text}
+                {'...'}
               </Text>
               <TouchableOpacity onPress={handleReadMore}>
-                <Text style={PokemonDetailsStyles.readMore}>... Read More</Text>
+                <Text style={PokemonDetailsStyles.readMore}>read more</Text>
               </TouchableOpacity>
               <Modal
                 animationType="slide"

@@ -21,7 +21,6 @@ export const PokemonProvider = ({children}) => {
   const fetchGender = async pokemonName => {
     const responses = await Promise.all(URL_GENDER.map(url => fetch(url)));
     const data = await Promise.all(responses.map(response => response.json()));
-    // console.log("gender-->", data);
 
     const genders = [];
     data.forEach(gender => {

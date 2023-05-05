@@ -1,20 +1,26 @@
-/* eslint-disable prettier/prettier */
-// tokens for fonts
+// tokens for font size
+export const FONT_SIZE = {
+  XXS: 8,
+  XS: 12,
+  SM: 14,
+  MD: 16,
+  LG: 18,
+  XL: 20,
+  XXL: 24,
+  XXXL: 28,
+  XXXL: 32,
+};
 
-export const FONT_SIZE_XS = 12;
-export const FONT_SIZE_SM = 14;
-export const FONT_SIZE_MD = 16;
-export const FONT_SIZE_LG = 18;
-export const FONT_SIZE_XL = 20;
-export const FONT_SIZE_XXL = 24;
-// ... define other font sizes
+// token for font weight
+export const FONT_WEIGHT = {
+  LIGHT: '200',
+  REGULAR: '400',
+  MEDIUM: '600',
+  BOLD: '700',
+};
 
-export const FONT_WEIGHT_LIGHT = '200';
-export const FONT_WEIGHT_REGULAR = '400';
-export const FONT_WEIGHT_MEDIUM = '600';
-export const FONT_WEIGHT_BOLD = '700';
-// ... define other font weights
-
-export const FONT_FAMILY_PRIMARY = 'Roboto';
-export const FONT_FAMILY_SECONDARY = 'Arial';
-// ... define other font families
+// token for font family
+export const FONT_FAMILY = {
+  PRIMARY: 'Roboto',
+  SECONDARY: 'Arial',
+};

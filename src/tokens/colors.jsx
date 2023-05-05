@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 // tokens for colors
 
-export const colorsToken = {
+export const COLOR_TOKEN = {
   // Primary color
-  primary: '#3F51B5',
+  primary: '#1A237E',
 
   // Secondary color
-  secondary: '#FFC107',
+  secondary: '#191654',
 
   // Success color
   success: '#4CAF50',
@@ -21,7 +21,9 @@ export const colorsToken = {
   alert: '#FF5722',
 
   // light colors
-  normal: '#DDCBDO',
+  light_yellow_bg: '#FAFCEA',
+  dark_blue_bg: '#0f0c29',
+
   fighting: '#FCC1B0',
   flying: '#B2D2E8',
   poison: '#CFB7ED',

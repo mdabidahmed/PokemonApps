@@ -1,23 +1,26 @@
 import {StyleSheet} from 'react-native';
+import {COLOR_TOKEN} from '../../tokens/colors';
+import {FONT_SIZE, FONT_WEIGHT} from '../../tokens/fonts';
+import {SPACING} from '../../tokens/spacing';
 export const HeaderStyles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SPACING.MARGIN_MD,
   },
   description: {
-    fontSize: 16,
-    color: '#302b63',
+    fontSize: FONT_SIZE.MD,
+    color: COLOR_TOKEN.gray900,
     lineHeight: 26,
-    marginBottom: 5,
-    fontWeight: '600',
+    marginBottom: SPACING.MARGIN_XS,
+    fontWeight: FONT_WEIGHT.MEDIUM,
   },
   line: {
-    borderBottomColor: 'black',
+    borderBottomColor: COLOR_TOKEN.primary,
     borderBottomWidth: 0.5,
 
-    marginVertical: 5,
+    marginVertical: SPACING.MARGIN_XS,
   },
   logo: {
-    paddingVertical: 6,
+    paddingVertical: SPACING.PADDING_SM,
   },
   imageSize: {
     width: 150,
