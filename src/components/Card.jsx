@@ -1,62 +1,40 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useContext} from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {COLORS} from '../constants/color';
+import {COLORS, SINGLE_COLOR} from '../constants/color';
 import {PokemonContext} from '../context/PokemonContext';
-
-import {URL} from '../constants/url';
+import CardStyles from '../styles/componentStyles/Card.Style';
 
 import {addLeadingZeros} from '../utils/leadingZeros';
-const Card = ({pokemon, loading, infoPokemon}) => {
+const Card = ({pokemon}) => {
   const navigation = useNavigation();
 
-  const {
-    url,
-    allPokemons,
-    globalPokemons,
-    getPokemonByID,
-    onClickLoadMore,
-    genderList,
-    pokemonDetails,
-    pokemonDescription,
-    handlePokemonPress,
-    fetchDescription,
-  } = useContext(PokemonContext);
+  const {fetchDescription} = useContext(PokemonContext);
 
   const renderItem = ({item}) => {
     const multiColors = item?.types?.map(({type}) => COLORS[type['name']]);
-    const singleColor = ['#acb6e5', '#86fde8'];
-    const imageUrl = item.sprites.other.dream_world.front_default;
+    const id = addLeadingZeros(item.id);
+
     const handlePress = () => {
       fetchDescription(item.id);
       navigation.navigate('Pokemon Details', {item});
     };
 
     const ColorGenerate = () => {
-      return multiColors.length >= 2 ? multiColors : singleColor;
+      return multiColors.length >= 2 ? multiColors : SINGLE_COLOR;
     };
     return (
       <TouchableOpacity onPress={handlePress}>
         <View style={CardStyles.card}>
-          <LinearGradient colors={ColorGenerate()} style={{borderRadius: 10}}>
-            {imageUrl && (
-              <Image
-                source={{uri: `${URL}/${item.name}.png`}}
-                style={{
-                  width: 180,
-                  height: 160,
-                  resizeMode: 'cover',
-                }}
-              />
-            )}
+          <LinearGradient colors={ColorGenerate()}>
+            <Image
+              source={{
+                uri: `${process.env.IMAGE_URL}/${id}.png`,
+              }}
+              style={CardStyles.imageCard}
+            />
+
             <View style={CardStyles.cardContent}>
               <Text style={CardStyles.heading}>{item.name}</Text>
               <Text style={CardStyles.heading}>{addLeadingZeros(item.id)}</Text>
@@ -80,38 +58,4 @@ const Card = ({pokemon, loading, infoPokemon}) => {
   );
 };
 
-const CardStyles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    flex: 1,
-  },
-  card: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
-    borderStyle: 'dashed',
-    marginVertical: 10,
-    marginHorizontal: 10,
-    shadowColor: '#171717',
-    // shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  heading: {
-    fontSize: 20,
-    fontWeight: '700',
-    // paddingVertical: 2,
-    textAlign: 'center',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
-    color: '#1A237E',
-    textTransform: 'capitalize',
-    fontFamily: 'roboto',
-    letterSpacing: 1,
-  },
-  cardContent: {paddingBottom: 20},
-});
 export default Card;

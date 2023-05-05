@@ -20,3 +20,5 @@ export const COLORS = {
   unknown: '#C0DFDD',
   shadow: '#CACACA',
 };
+
+export const SINGLE_COLOR = ['#acb6e5', '#86fde8'];

@@ -3,7 +3,6 @@ import React, {startTransition, useEffect, useState} from 'react';
 import {
   Image,
   Modal,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import {
 } from 'react-native';
 import Card from '../components/Card';
 import HeaderComponent from '../components/header/Header';
+import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
 const PokemonListComponent = () => {
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,10 +21,6 @@ const PokemonListComponent = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [filteredPokemonList, setFilteredPokemonList] = useState(pokeData);
-  const handleInputChange = text => {
-    setSearchQuery(text);
-    // perform search logic here
-  };
 
   const handleFilterIconPress = () => {
     setShowModal(true);
@@ -74,13 +70,11 @@ const PokemonListComponent = () => {
 
   return (
     <View style={PokemonListStyles.container}>
-      <View>
-        <HeaderComponent
-          title="Pokedex"
-          description="Search for any Pokemon that exists on the planet"
-        />
-      </View>
-      {/* Start */}
+      <HeaderComponent
+        title="Pokedex"
+        description="Search for any Pokemon that exists on the planet"
+      />
+
       <View style={PokemonListStyles.filterContainer}>
         <View style={PokemonListStyles.inputContainer}>
           <TextInput
@@ -96,14 +90,12 @@ const PokemonListComponent = () => {
             }}
           />
 
-          <TouchableOpacity onPress={handleFilterIconPress}>
+          <TouchableOpacity
+            style={PokemonListStyles.filter}
+            onPress={handleFilterIconPress}>
             <Image
-              source={require('../assets/filter.png')}
-              style={{
-                width: 24,
-                height: 24,
-                resizeMode: 'contain',
-              }}
+              source={require('../assets/filters.png')}
+              style={PokemonListStyles.icon}
             />
           </TouchableOpacity>
         </View>
@@ -116,8 +108,8 @@ const PokemonListComponent = () => {
           </View>
         </Modal>
       </View>
-      {/* end */}
-      <View style={{height: 490}}>
+
+      <View style={PokemonListStyles.cardContainer}>
         <Card
           pokemon={filteredPokemonList}
           loading={loading}
@@ -140,11 +132,7 @@ const PokemonListComponent = () => {
             }}>
             <Image
               source={require('../assets/previous.png')}
-              style={{
-                width: 24,
-                height: 24,
-                resizeMode: 'contain',
-              }}
+              style={PokemonListStyles.icon}
             />
           </TouchableOpacity>
         </View>
@@ -161,11 +149,7 @@ const PokemonListComponent = () => {
               }}>
               <Image
                 source={require('../assets/next.png')}
-                style={{
-                  width: 24,
-                  height: 24,
-                  resizeMode: 'contain',
-                }}
+                style={PokemonListStyles.icon}
               />
             </TouchableOpacity>
           )}
@@ -175,60 +159,4 @@ const PokemonListComponent = () => {
   );
 };
 
-const PokemonListStyles = StyleSheet.create({
-  container: {
-    // paddingBottom: 30,
-    // marginBottom: 5,
-  },
-  button: {
-    position: 'absolute',
-    backgroundColor: '#2196F3',
-    borderRadius: 10,
-    paddingVertical: 10,
-  },
-  title: {
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  filterContainer: {
-    padding: 10,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-
-    borderRadius: 10,
-    paddingHorizontal: 10,
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 8,
-    fontSize: 18,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 4,
-    marginVertical: 4,
-    marginRight: 8,
-    borderColor: 'black',
-    borderWidth: 1.5,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  paginationSection: {
-    width: '100%',
-    height: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    backgroundColor: '#fff',
-    // backgroundColor: 'red',
-  },
-  prevBtn: {
-    marginRight: 20,
-  },
-});
 export default PokemonListComponent;
