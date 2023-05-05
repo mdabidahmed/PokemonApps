@@ -9,8 +9,9 @@ import {
   View,
 } from 'react-native';
 import Loader from '../components/atom/loader/Loader';
-import Card from '../components/molecules/Card';
+import Card from '../components/molecules/card/Card';
 import HeaderComponent from '../components/molecules/header/Header';
+import {POKEMON_DESCRIPTION, SEARCH_PLACEHOLDER} from '../constants/string';
 import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
 const PokemonListComponent = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -47,9 +48,10 @@ const PokemonListComponent = () => {
         state.sort((a, b) => (a.id > b.id ? 1 : -1));
         return state;
       });
+
       setFilteredPokemonList(state => {
         state = [...state, result.data];
-        state.sort((a, b) => (a.id > b.id ? 1 : -1));
+        state = state.sort((a, b) => (a.id > b.id ? 1 : -1));
         return state;
       });
       setLoading(false);
@@ -72,16 +74,13 @@ const PokemonListComponent = () => {
 
   return (
     <View style={PokemonListStyles.container}>
-      <HeaderComponent
-        title="Pokedex"
-        description="Search for any Pokemon that exists on the planet"
-      />
+      <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
 
       <View style={PokemonListStyles.filterContainer}>
         <View style={PokemonListStyles.inputContainer}>
           <TextInput
             style={PokemonListStyles.input}
-            placeholder="Search pokemon here"
+            placeholder={SEARCH_PLACEHOLDER}
             value={searchQuery}
             onChangeText={text => {
               setSearchQuery(text);

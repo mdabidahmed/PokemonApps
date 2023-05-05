@@ -2,11 +2,11 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useContext} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {COLORS, SINGLE_COLOR} from '../../constants/color';
-import {PokemonContext} from '../../context/PokemonContext';
-import CardStyles from '../../styles/componentStyles/Card.Style';
+import {COLORS, SINGLE_COLOR} from '../../../constants/color';
+import {PokemonContext} from '../../../context/PokemonContext';
+import CardStyles from '../../../styles/componentStyles/Card.Style';
 
-import {addLeadingZeros} from '../../utils/leadingZeros';
+import {addLeadingZeros} from '../../../utils/leadingZeros';
 const Card = ({pokemon}) => {
   const navigation = useNavigation();
 

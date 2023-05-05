@@ -12,6 +12,15 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import ProgressBar from 'react-native-progress/Bar';
 import BadgeButton from '../components/atom/badge/BadgeButton';
+import {
+  GENDER,
+  HEIGHT,
+  POKEMON_ABILITIES,
+  READ_MORE,
+  TYPES,
+  WEAK_AGAINST,
+  WEIGHT,
+} from '../constants/string';
 import {PokemonContext} from '../context/PokemonContext';
 import {getPokemonType} from '../services/api';
 import PokemonDetailsStyles from '../styles/componentStyles/PokemonDetail.Style';
@@ -98,7 +107,7 @@ const PokemonDetailComponent = item => {
                 {'...'}
               </Text>
               <TouchableOpacity onPress={handleReadMore}>
-                <Text style={PokemonDetailsStyles.readMore}>read more</Text>
+                <Text style={PokemonDetailsStyles.readMore}>{READ_MORE}</Text>
               </TouchableOpacity>
               <Modal
                 animationType="slide"
@@ -133,7 +142,7 @@ const PokemonDetailComponent = item => {
               PokemonDetailsStyles.detailSection,
             ]}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Gender(s)</Text>
+              <Text style={PokemonDetailsStyles.label}>{GENDER}</Text>
               <View style={PokemonDetailsStyles.fdrow}>
                 {genderList &&
                   genderList.map((item, index) => (
@@ -145,7 +154,7 @@ const PokemonDetailComponent = item => {
               </View>
             </View>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Weight</Text>
+              <Text style={PokemonDetailsStyles.label}>{WEIGHT}</Text>
               <View>
                 <Text style={[PokemonDetailsStyles.value]}>
                   {covert_Weight_to_Kg(pokemon.weight)}
@@ -155,7 +164,7 @@ const PokemonDetailComponent = item => {
           </View>
           <View style={PokemonDetailsStyles.row}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Height</Text>
+              <Text style={PokemonDetailsStyles.label}>{HEIGHT}</Text>
               <View style={PokemonDetailsStyles.fdrow}>
                 <Text style={[PokemonDetailsStyles.value]}>
                   {meters_to_feet_and_inches(pokemon.height)}
@@ -163,7 +172,7 @@ const PokemonDetailComponent = item => {
               </View>
             </View>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Types</Text>
+              <Text style={PokemonDetailsStyles.label}>{TYPES}</Text>
               <View style={PokemonDetailsStyles.fdrow}>
                 {pokemon.types.map(item => (
                   <View
@@ -178,7 +187,9 @@ const PokemonDetailComponent = item => {
 
           <View style={PokemonDetailsStyles.row}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Abilities</Text>
+              <Text style={PokemonDetailsStyles.label}>
+                {POKEMON_ABILITIES}
+              </Text>
               <View style={PokemonDetailsStyles.fdrow}>
                 {pokemon &&
                   pokemon.abilities.map((item, index) => (
@@ -205,7 +216,7 @@ const PokemonDetailComponent = item => {
           </View>
           <View style={PokemonDetailsStyles.row}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
-              <Text style={PokemonDetailsStyles.label}>Weak Against</Text>
+              <Text style={PokemonDetailsStyles.label}>{WEAK_AGAINST}</Text>
               <View style={PokemonDetailsStyles.fdrow}>
                 {weakAgainst &&
                   weakAgainst.map((item, index) => (
