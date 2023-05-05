@@ -4,23 +4,13 @@ import axios from 'axios';
 
 import {URL_GENDER} from '../constants/url';
 import {PokemonContext} from './PokemonContext';
-export const API_BASE_URL = 'https://pokeapi.co/api/v2';
+const API_BASE_URL = process.env.API_BASE_URL;
+const url = process.env.API_BASE_URL;
 export const PokemonProvider = ({children}) => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [globalPokemons, setGlobalPokemons] = useState([]);
-  const [offset, setOffset] = useState(0);
-
-  // ----------------------------------
-  const [pokemonList, setPokemonList] = useState([]);
   const [genderList, setGenderList] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [pokemonDetails, setPokemonDetails] = useState(null);
   const [pokemonDescription, setPokemonDescription] = useState(null);
-  const [pokemonStrengths, setPokemonStrengths] = useState([]);
-  const [pokemonWeaknesses, setPokemonWeaknesses] = useState([]);
-  const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState([]);
-  // const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
-  const url = process.env.API_BASE_URL;
+
   useEffect(() => {
     // Fetch Description
     fetchDescription();
@@ -71,132 +61,6 @@ export const PokemonProvider = ({children}) => {
         console.log(error);
       });
   };
-  // const handlePokemonPress = pokemon => {
-  //   // setSelectedPokemon(pokemon);
-  //   // https://pokeapi.co/api/v2/pokemon-species/6
-  //   // Fetch Pokemon Details
-  //   // axios
-  //   //   .get(pokemon.url)
-  //   //   .then(response => {
-  //   //     setPokemonDetails(response.data);
-  //   //   })
-  //   //   .catch(error => {
-  //   //     console.log(error);
-  //   //   });
-
-  //   // Fetch Pokemon Description
-  //   axios
-  //     .get(`${API_BASE_URL}/pokemon-species/${pokemon.id}`)
-  //     .then(response => {
-  //       setPokemonDescription(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  //   // Fetch Pokemon Evolution Chain
-  //   axios
-  //     .get(pokemon.species.url)
-  //     .then(speciesResponse => {
-  //       axios
-  //         .get(speciesResponse.data.evolution_chain.url)
-  //         .then(evolutionChainResponse => {
-  //           setEvolutionChain(evolutionChainResponse.data.chain);
-  //         })
-  //         .catch(error => {
-  //           console.log(error);
-  //         });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-
-  //   // Fetch Pokemon Strengths and Weaknesses
-  //   if (response.data.types && response.data.types.length > 0) {
-  //     const types = response.data.types.map(type => type.type.name);
-  //     const requests = types.map(type =>
-  //       axios.get(`${API_BASE_URL}/type/${type}`),
-  //     );
-  //     Promise.all(requests)
-  //       .then(responses => {
-  //         const strengths = [];
-  //         const weaknesses = [];
-  //         responses.forEach(response => {
-  //           const {damage_relations} = response.data;
-  //           Object.keys(damage_relations).forEach(key => {
-  //             const value = damage_relations[key];
-  //             if (key === 'double_damage_to') {
-  //               value.forEach(type => {
-  //                 if (!strengths.includes(type.name)) {
-  //                   strengths.push(type.name);
-  //                 }
-  //               });
-  //             } else if (key === 'double_damage_from') {
-  //               value.forEach(type => {
-  //                 if (!weaknesses.includes(type.name)) {
-  //                   weaknesses.push(type.name);
-  //                 }
-  //               });
-  //             } else if (key === 'half_damage_to') {
-  //               value.forEach(type => {
-  //                 if (!weaknesses.includes(type.name)) {
-  //                   weaknesses.push(type.name);
-  //                 }
-  //               });
-  //             } else if (key === 'half_damage_from') {
-  //               value.forEach(type => {
-  //                 if (!strengths.includes(type.name)) {
-  //                   strengths.push(type.name);
-  //                 }
-  //               });
-  //             }
-  //           });
-  //         });
-  //         setPokemonStrengths(strengths);
-  //         setPokemonWeaknesses(weaknesses);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
-  // };
-
-  // const [loading, setLoading] = useState(true);
-  // const [active, setActive] = useState(false);
-
-  // lLamar 50 pokemones a la API
-  // const getAllPokemons = async (limit = 20) => {
-  //   const baseURL = 'https://pokeapi.co/api/v2/';
-
-  //   const res = await fetch(
-  //     `${baseURL}pokemon?limit=${limit}&offset=${offset}`,
-  //   );
-  //   const data = await res.json();
-
-  //   const promises = data.results.map(async pokemon => {
-  //     const res = await fetch(pokemon.url);
-  //     const data = await res.json();
-  //     return data;
-  //   });
-  //   const results = await Promise.all(promises);
-
-  //   setAllPokemons([...allPokemons, ...results]);
-  //   setLoading(false);
-  // };
-
-  // useEffect(() => {
-  //   getAllPokemons();
-  // }, [offset]);
-
-  // useEffect(() => {
-  //   getGlobalPokemons();
-  // }, []);
-
-  // for load more
-  const onClickLoadMore = () => {
-    setOffset(offset + 50);
-  };
-
-  const [filteredPokemons, setfilteredPokemons] = useState([]);
 
   return (
     <PokemonContext.Provider
@@ -204,26 +68,8 @@ export const PokemonProvider = ({children}) => {
         genderList,
         pokemonDetails,
         pokemonDescription,
-
         fetchDescription,
         fetchGender,
-        url,
-        // valueSearch,
-        // onInputChange,
-        // onResetForm,
-        allPokemons,
-        // globalPokemons,
-        // getPokemonByID,
-        // onClickLoadMore,
-        // Loader
-        // loading,
-        // setLoading,
-        // Btn Filter
-        // active,
-        // setActive,
-        // Filter Container Checkbox
-        // handleCheckbox,
-        filteredPokemons,
       }}>
       {children}
     </PokemonContext.Provider>

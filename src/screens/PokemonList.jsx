@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Card from '../components/Card';
-import HeaderComponent from '../components/header/Header';
+import Loader from '../components/atom/loader/Loader';
+import Card from '../components/molecules/Card';
+import HeaderComponent from '../components/molecules/header/Header';
 import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
 const PokemonListComponent = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -32,7 +33,6 @@ const PokemonListComponent = () => {
   const pokeFun = async () => {
     setLoading(true);
     const res = await axios.get(url);
-    console.log('next', res.data.next);
     setNextUrl(res.data.next);
     setPrevUrl(res.data.previous);
     getPokemon(res.data.results);
@@ -40,6 +40,7 @@ const PokemonListComponent = () => {
   };
   const getPokemon = async res => {
     res.map(async item => {
+      setLoading(true);
       const result = await axios.get(item.url);
       setPokeData(state => {
         state = [...state, result.data];
@@ -51,6 +52,7 @@ const PokemonListComponent = () => {
         state.sort((a, b) => (a.id > b.id ? 1 : -1));
         return state;
       });
+      setLoading(false);
     });
   };
   useEffect(() => {
@@ -94,8 +96,9 @@ const PokemonListComponent = () => {
             style={PokemonListStyles.filter}
             onPress={handleFilterIconPress}>
             <Image
-              source={require('../assets/filters.png')}
+              source={require('../assets/icons/filters.png')}
               style={PokemonListStyles.icon}
+              accessibilityLabel="Filter icon for getting result from filter"
             />
           </TouchableOpacity>
         </View>
@@ -108,53 +111,60 @@ const PokemonListComponent = () => {
           </View>
         </Modal>
       </View>
-
-      <View style={PokemonListStyles.cardContainer}>
-        <Card
-          pokemon={filteredPokemonList}
-          loading={loading}
-          infoPokemon={poke => setPokeDex(poke)}
-        />
-      </View>
-
-      <View style={PokemonListStyles.paginationSection}>
-        <View style={PokemonListStyles.prevBtn}>
-          <TouchableOpacity
-            disabled={prevUrl === null ? true : false}
-            onPress={() => {
-              setPokeData([]);
-              setFilteredPokemonList([]);
-              setUrl(prevUrl);
-            }}
-            style={{
-              pointerEvents: prevUrl ? 'auto' : 'none',
-              paddingTop: 1,
-            }}>
-            <Image
-              source={require('../assets/previous.png')}
-              style={PokemonListStyles.icon}
+      {loading ? (
+        <Loader />
+      ) : (
+        <View>
+          <View style={PokemonListStyles.cardContainer}>
+            <Card
+              pokemon={filteredPokemonList}
+              loading={loading}
+              infoPokemon={poke => setPokeDex(poke)}
             />
-          </TouchableOpacity>
+          </View>
+
+          <View style={PokemonListStyles.paginationSection}>
+            <View style={PokemonListStyles.prevBtn}>
+              <TouchableOpacity
+                disabled={prevUrl === null ? true : false}
+                onPress={() => {
+                  setPokeData([]);
+                  setFilteredPokemonList([]);
+                  setUrl(prevUrl);
+                }}
+                style={{
+                  pointerEvents: prevUrl ? 'auto' : 'none',
+                  paddingTop: 1,
+                }}>
+                <Image
+                  source={require('../assets/icons/previous.png')}
+                  style={PokemonListStyles.icon}
+                  accessibilityLabel="Click button for List of previous 20 Pokemon Card"
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={PokemonListStyles}>
+              {nextUrl && (
+                <TouchableOpacity
+                  onPress={() => {
+                    setPokeData([]);
+                    setFilteredPokemonList([]);
+                    setUrl(nextUrl);
+                  }}
+                  style={{
+                    paddingTop: 1,
+                  }}>
+                  <Image
+                    source={require('../assets/icons/next.png')}
+                    style={PokemonListStyles.icon}
+                    accessibilityLabel="Click button for List of next 20 Pokemon Card"
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
         </View>
-        <View style={PokemonListStyles}>
-          {nextUrl && (
-            <TouchableOpacity
-              onPress={() => {
-                setPokeData([]);
-                setFilteredPokemonList([]);
-                setUrl(nextUrl);
-              }}
-              style={{
-                paddingTop: 1,
-              }}>
-              <Image
-                source={require('../assets/next.png')}
-                style={PokemonListStyles.icon}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
+      )}
     </View>
   );
 };

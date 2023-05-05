@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {generateRandomColor} from '../utils/randomColor';
+import {generateRandomColor} from '../../../utils/randomColor';
 const BadgeButton = ({badgeText, onPress}) => {
   const [backgroundColor, setBackgroundColor] = useState('#FCC1B0');
   useEffect(() => {

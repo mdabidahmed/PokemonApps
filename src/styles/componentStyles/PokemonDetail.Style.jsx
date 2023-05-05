@@ -138,6 +138,9 @@ const PokemonDetailsStyles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
+  detailSection: {
+    marginTop: 20,
+  },
 });
 
 export default PokemonDetailsStyles;

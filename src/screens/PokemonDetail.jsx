@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ProgressBar from 'react-native-progress/Bar';
-import BadgeButton from '../components/BadgeButton';
+import BadgeButton from '../components/atom/badge/BadgeButton';
 import {PokemonContext} from '../context/PokemonContext';
 import {getPokemonType} from '../services/api';
 import PokemonDetailsStyles from '../styles/componentStyles/PokemonDetail.Style';
@@ -60,8 +60,9 @@ const PokemonDetailComponent = item => {
               style={[PokemonDetailsStyles.item, PokemonDetailsStyles.close]}>
               <TouchableOpacity onPress={onClose}>
                 <Image
-                  source={require('../assets/remove.png')}
+                  source={require('../assets/icons/remove.png')}
                   style={PokemonDetailsStyles.icon}
+                  accessibilityLabel="Go back to Pokemon Listing Page"
                 />
               </TouchableOpacity>
             </View>
@@ -79,6 +80,7 @@ const PokemonDetailComponent = item => {
                         uri: `${process.env.IMAGE_URL}/${transformedId}.png`,
                       }}
                       style={PokemonDetailsStyles.imgSize}
+                      accessibilityLabel="Pokemon Card Image"
                     />
                   </View>
                 </LinearGradient>
@@ -115,8 +117,9 @@ const PokemonDetailComponent = item => {
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <Text style={PokemonDetailsStyles.closeButton}>
                       <Image
-                        source={require('../assets/cancel.png')}
+                        source={require('../assets/icons/cancel.png')}
                         style={PokemonDetailsStyles.icon}
+                        accessibilityLabel="Close button for Modal Close"
                       />
                     </Text>
                   </TouchableOpacity>
@@ -124,7 +127,12 @@ const PokemonDetailComponent = item => {
               </Modal>
             </View>
           </View>
-          <View style={PokemonDetailsStyles.row}>
+
+          <View
+            style={[
+              PokemonDetailsStyles.row,
+              PokemonDetailsStyles.detailSection,
+            ]}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
               <Text style={PokemonDetailsStyles.label}>Gender(s)</Text>
               <View style={PokemonDetailsStyles.fdrow}>
