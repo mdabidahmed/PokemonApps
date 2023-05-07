@@ -15,11 +15,13 @@ const CardStyles = StyleSheet.create({
     borderRadius: 10,
     borderStyle: 'dashed',
     marginVertical: SPACING.MARGIN_SM,
-    marginHorizontal: SPACING.MARGIN_SM,
+    // marginHorizontal: SPACING.MARGIN_XS,
     shadowColor: '#171717',
     shadowOpacity: 0.2,
     shadowRadius: 3,
     overflow: 'hidden',
+    // paddingVertical: SPACING.MARGIN_SM,
+    marginHorizontal: SPACING.MARGIN_SM,
   },
   heading: {
     fontSize: FONT_SIZE.XL,
@@ -32,9 +34,9 @@ const CardStyles = StyleSheet.create({
   },
   cardContent: {paddingBottom: SPACING.MARGIN_MD},
   imageCard: {
-    width: 180,
-    height: 160,
-    resizeMode: 'cover',
+    width: 165,
+    height: 140,
+    resizeMode: 'contain',
   },
 });
 

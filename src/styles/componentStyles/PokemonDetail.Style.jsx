@@ -51,7 +51,7 @@ const PokemonDetailsStyles = StyleSheet.create({
     paddingVertical: SIZES.xs,
   },
   heading: {
-    fontSize: FONT_SIZE.XXL,
+    fontSize: FONT_SIZE.XXXL,
     fontWeight: FONT_WEIGHT.BOLD,
     color: COLOR_TOKEN.primary,
     textTransform: 'uppercase',
@@ -70,7 +70,7 @@ const PokemonDetailsStyles = StyleSheet.create({
   },
   image: {padding: SIZES.xs},
   cardNumber: {
-    fontSize: FONT_SIZE.XXL,
+    fontSize: FONT_SIZE.XXXL,
     fontWeight: FONT_WEIGHT.MEDIUM,
     fontFamily: FONT_FAMILY.PRIMARY,
     letterSpacing: 1,

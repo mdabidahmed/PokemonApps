@@ -22,29 +22,26 @@ import {
   WEIGHT,
 } from '../constants/string';
 import {PokemonContext} from '../context/PokemonContext';
-import {getPokemonType} from '../services/api';
 import PokemonDetailsStyles from '../styles/componentStyles/PokemonDetail.Style';
+import {concatenateProperty} from '../utils/concatenateProperty';
 import {addLeadingZeros} from '../utils/leadingZeros';
 import {meters_to_feet_and_inches} from '../utils/lengthUtils';
 import {covert_Weight_to_Kg} from '../utils/weightUtils';
 const PokemonDetailComponent = item => {
   const pokemon = item.route.params.item;
   const [modalVisible, setModalVisible] = useState(false);
-  const [weakAgainst, setWeakAgainst] = useState([]);
   const navigation = useNavigation();
-  const {genderList, pokemonDescription, fetchGender} =
-    useContext(PokemonContext);
+  const {
+    genderList,
+    weakAgainst,
+    findPokemonWeakness,
+    pokemonDescription,
+    fetchGender,
+  } = useContext(PokemonContext);
 
   useEffect(() => {
-    findPokemonWeakness();
-  }, [weakAgainst]);
-
-  const findPokemonWeakness = () => {
-    const id = pokemon.id;
-    getPokemonType(id).then(response => {
-      setWeakAgainst(response.data.damage_relations.double_damage_from);
-    });
-  };
+    findPokemonWeakness(pokemon.id);
+  }, []);
 
   const onClose = () => {
     navigation.navigate('Pokemon list');
@@ -112,16 +109,23 @@ const PokemonDetailComponent = item => {
               <Modal
                 animationType="slide"
                 transparent={true}
+                onRequestClose={() => setModalVisible(false)}
                 visible={modalVisible}>
                 <View style={PokemonDetailsStyles.modalContainer}>
-                  <Text style={PokemonDetailsStyles.modalDescription}>
-                    {pokemonDescription &&
-                      pokemonDescription.flavor_text_entries
-                        .filter(item => item.language.name === 'en')
-                        .map((res, index) => (
-                          <Text key={index}>{res.flavor_text}</Text>
-                        ))}
-                  </Text>
+                  <View>
+                    <ScrollView>
+                      <Text style={PokemonDetailsStyles.modalDescription}>
+                        {pokemonDescription &&
+                          concatenateProperty(
+                            pokemonDescription.flavor_text_entries.filter(
+                              item => item.language.name === 'en',
+                            ),
+                            'flavor_text',
+                          )}
+                      </Text>
+                    </ScrollView>
+                  </View>
+
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <Text style={PokemonDetailsStyles.closeButton}>
                       <Image
@@ -241,7 +245,7 @@ const PokemonDetailComponent = item => {
                   color="#11114e"
                   thickness={2}
                   progress={stat.base_stat / 100}
-                  width={240}
+                  width={220}
                   height={10}
                   borderRadius={0}
                   unfilledColor="#CBD5ED"

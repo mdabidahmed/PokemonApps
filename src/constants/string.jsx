@@ -2,7 +2,7 @@
 
 export const APP_NAME = 'Pokemon API App';
 export const WELCOME_MESSAGE = 'Welcome to the Pokemon API App!';
-export const SEARCH_PLACEHOLDER = 'Search Pokemon';
+export const SEARCH_PLACEHOLDER = 'Search Pokemon name or number';
 
 export const POKEMON_TITLE = 'Pokemon Description';
 export const POKEMON_DESCRIPTION =
@@ -17,4 +17,4 @@ export const TYPES = 'Types';
 
 export const READ_MORE = 'read more';
 
-export const WEAK_AGAINST = 'Stats';
+export const WEAK_AGAINST = 'Weak Against';

@@ -8,7 +8,7 @@ export const FONT_SIZE = {
   XL: 20,
   XXL: 24,
   XXXL: 28,
-  XXXL: 32,
+  XXXXL: 32,
 };
 
 // token for font weight

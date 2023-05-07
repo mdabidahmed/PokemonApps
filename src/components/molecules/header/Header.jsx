@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, SafeAreaView, Text, View} from 'react-native';
 import {HeaderStyles} from '../../../styles/componentStyles/HeaderStyles';
 const HeaderComponent = ({title, description}) => {
   return (
-    <View style={HeaderStyles.container}>
+    <SafeAreaView style={HeaderStyles.container}>
       <View style={HeaderStyles.logo}>
         <Image
           style={HeaderStyles.imageSize}
@@ -11,9 +11,12 @@ const HeaderComponent = ({title, description}) => {
           accessibilityLabel="Pokemon Logo image"
         />
       </View>
-      <View style={HeaderStyles.line} />
+      <View style={HeaderStyles.containerLine}>
+        <View style={HeaderStyles.line} />
+      </View>
+
       <Text style={HeaderStyles.description}>{description}</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

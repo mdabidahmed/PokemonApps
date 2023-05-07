@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React, {startTransition, useEffect, useState} from 'react';
+import React, {startTransition, useContext, useEffect, useState} from 'react';
 import {
+  Dimensions,
   Image,
   Modal,
   Text,
@@ -12,18 +12,24 @@ import Loader from '../components/atom/loader/Loader';
 import Card from '../components/molecules/card/Card';
 import HeaderComponent from '../components/molecules/header/Header';
 import {POKEMON_DESCRIPTION, SEARCH_PLACEHOLDER} from '../constants/string';
+import {PokemonContext} from '../context/PokemonContext';
+import {getPokemonList} from '../services/api';
 import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
 const PokemonListComponent = () => {
-  const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
+  const [url, setUrl] = useState(`${process.env.API_BASE_URL}/pokemon`);
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
-  const [pokeDex, setPokeDex] = useState();
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [filteredPokemonList, setFilteredPokemonList] = useState(pokeData);
 
+  const {
+    getPokemon,
+    pokeData,
+    setPokeData,
+    setFilteredPokemonList,
+    filteredPokemonList,
+  } = useContext(PokemonContext);
   const handleFilterIconPress = () => {
     setShowModal(true);
   };
@@ -31,34 +37,28 @@ const PokemonListComponent = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-  const pokeFun = async () => {
-    setLoading(true);
-    const res = await axios.get(url);
-    setNextUrl(res.data.next);
-    setPrevUrl(res.data.previous);
-    getPokemon(res.data.results);
-    setLoading(false);
-  };
-  const getPokemon = async res => {
-    res.map(async item => {
-      setLoading(true);
-      const result = await axios.get(item.url);
-      setPokeData(state => {
-        state = [...state, result.data];
-        state.sort((a, b) => (a.id > b.id ? 1 : -1));
-        return state;
-      });
 
-      setFilteredPokemonList(state => {
-        state = [...state, result.data];
-        state = state.sort((a, b) => (a.id > b.id ? 1 : -1));
-        return state;
-      });
+  /**
+   * Retrieves details of a Pokemon card from the PokeAPI.
+   * @param {string} id - The ID of the Pokemon card to retrieve the details for.
+   * @returns {Promise} A promise that resolves to an object representing the details of the Pokemon card.
+   */
+  const fetchPokemonCardDetails = async () => {
+    setLoading(true);
+    try {
+      const response = await getPokemonList(url);
+      setNextUrl(response.next);
+      setPrevUrl(response.previous);
+      getPokemon(response.results);
       setLoading(false);
-    });
+    } catch (error) {
+      // If there is an error, log it to the console and re-throw the error.
+      console.log(error.message);
+    }
   };
+
   useEffect(() => {
-    pokeFun();
+    fetchPokemonCardDetails();
   }, [url]);
 
   const filterPokemonResults = searchText => {
@@ -71,11 +71,12 @@ const PokemonListComponent = () => {
 
     return filteredPokemon;
   };
-
+  const {width} = Dimensions.get('window');
   return (
-    <View style={PokemonListStyles.container}>
-      <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
-
+    <View style={[PokemonListStyles.container]}>
+      <View style={PokemonListStyles.headerContainer}>
+        <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
+      </View>
       <View style={PokemonListStyles.filterContainer}>
         <View style={PokemonListStyles.inputContainer}>
           <TextInput
@@ -115,14 +116,11 @@ const PokemonListComponent = () => {
       ) : (
         <View>
           <View style={PokemonListStyles.cardContainer}>
-            <Card
-              pokemon={filteredPokemonList}
-              loading={loading}
-              infoPokemon={poke => setPokeDex(poke)}
-            />
+            <Card pokemon={filteredPokemonList} />
           </View>
 
-          <View style={PokemonListStyles.paginationSection}>
+          <View
+            style={[PokemonListStyles.paginationSection, {width: width * 1}]}>
             <View style={PokemonListStyles.prevBtn}>
               <TouchableOpacity
                 disabled={prevUrl === null ? true : false}
@@ -136,7 +134,7 @@ const PokemonListComponent = () => {
                   paddingTop: 1,
                 }}>
                 <Image
-                  source={require('../assets/icons/previous.png')}
+                  source={require('../assets/icons/left-chevron.png')}
                   style={PokemonListStyles.icon}
                   accessibilityLabel="Click button for List of previous 20 Pokemon Card"
                 />
@@ -154,7 +152,7 @@ const PokemonListComponent = () => {
                     paddingTop: 1,
                   }}>
                   <Image
-                    source={require('../assets/icons/next.png')}
+                    source={require('../assets/icons/right-chevron.png')}
                     style={PokemonListStyles.icon}
                     accessibilityLabel="Click button for List of next 20 Pokemon Card"
                   />
