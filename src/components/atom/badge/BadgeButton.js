@@ -8,7 +8,7 @@ const BadgeButton = ({badgeText, onPress}) => {
   }, []);
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} testID="badge-button">
       <View style={styles.button}>
         <View style={{backgroundColor: backgroundColor, borderRadius: 5}}>
           <View style={styles.badge}>

@@ -1,3 +1,4 @@
+import CheckBox from '@react-native-community/checkbox';
 import React, {startTransition, useContext, useEffect, useState} from 'react';
 import {
   Dimensions,
@@ -14,6 +15,7 @@ import HeaderComponent from '../components/molecules/header/Header';
 import {POKEMON_DESCRIPTION, SEARCH_PLACEHOLDER} from '../constants/string';
 import {PokemonContext} from '../context/PokemonContext';
 import {getPokemonList} from '../services/api';
+
 import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
 const PokemonListComponent = () => {
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,29 @@ const PokemonListComponent = () => {
   const [prevUrl, setPrevUrl] = useState();
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
-
+  // const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
+  const [typeFilters, setTypeFilters] = useState({
+    normal: false,
+    fire: false,
+    water: false,
+    grass: false,
+    electric: false,
+    ice: false,
+    fighting: false,
+    poison: false,
+    ground: false,
+    flying: false,
+    psychic: false,
+    bug: false,
+    rock: false,
+    ghost: false,
+    dragon: false,
+    dark: false,
+    steel: false,
+    fairy: false,
+  });
   const {
     getPokemon,
     pokeData,
@@ -30,6 +54,58 @@ const PokemonListComponent = () => {
     setFilteredPokemonList,
     filteredPokemonList,
   } = useContext(PokemonContext);
+
+  const handleTypeFilterChange = type => {
+    setTypeFilters(prevFilters => ({
+      ...prevFilters,
+      [type]: !prevFilters[type],
+    }));
+  };
+
+  function newfilteredPokemonList() {
+    if (pokeData) {
+      pokeData.filter(pokemon => {
+        console.log('inside', pokemon);
+        const typeFilters = [normal, fire, water];
+        const res = pokemon.types.some(type => typeFilters.includes(type));
+
+        console.log('res--**', res);
+        return res;
+        // const typeFilters = Object.keys(typeFilters).filter(
+        //   type => typeFilters[type],
+        // );
+
+        // if (typeFilters.length === 0) {
+        //   return true;
+        // }
+
+        // return pokemon.types.some(type => typeFilters.includes(type));
+      });
+    }
+  }
+
+  const submitFilter = () => {
+    newfilteredPokemonList();
+  };
+  console.log('type-filter-->', typeFilters);
+  console.log('PokemonData-->', pokeData);
+  console.log('newfilteredPokemonList', newfilteredPokemonList);
+
+  const toggleTypeSelection = type => {
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter(t => t !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
+  };
+  const filterByType = pokemon => {
+    if (selectedTypes.length === 0) {
+      return true;
+    } else {
+      return pokemon.types.some(type => selectedTypes.includes(type));
+    }
+  };
+
   const handleFilterIconPress = () => {
     setShowModal(true);
   };
@@ -73,7 +149,7 @@ const PokemonListComponent = () => {
   };
   const {width} = Dimensions.get('window');
   return (
-    <View style={[PokemonListStyles.container]}>
+    <View style={[PokemonListStyles.container]} testID="ptid">
       <View style={PokemonListStyles.headerContainer}>
         <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
       </View>
@@ -102,14 +178,88 @@ const PokemonListComponent = () => {
             />
           </TouchableOpacity>
         </View>
-        <Modal visible={showModal} animationType="slide">
-          <View style={PokemonListStyles.modalContainer}>
-            <Text>Filter options go here</Text>
-            <TouchableOpacity onPress={handleCloseModal}>
-              <Text>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
+
+        {/* FILTER starts from here */}
+
+        <View>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={showModal}
+            onRequestClose={handleCloseModal}>
+            <View>
+              <View
+                style={[
+                  PokemonListStyles.item,
+                  PokemonListStyles.close,
+                  PokemonListStyles.closeContainer,
+                ]}>
+                <TouchableOpacity onPress={handleCloseModal}>
+                  <Image
+                    source={require('../assets/icons/remove.png')}
+                    style={PokemonListStyles.icon}
+                    accessibilityLabel="Go back to Pokemon Listing Page"
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={PokemonListStyles.header}>Filter</Text>
+              <View style={PokemonListStyles.box}>
+                <Text style={PokemonListStyles.type}>Type</Text>
+                {/* First row */}
+                {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={{marginLeft: 20}}>Show only favorites</Text>
+                  <CheckBox
+                    value={showOnlyFavorites}
+                    onValueChange={setShowOnlyFavorites}
+                  />
+                </View> */}
+
+                {/* Second row */}
+                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                  {Object.keys(typeFilters).map(type => (
+                    <View
+                      key={type}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        width: '50%',
+                      }}>
+                      <CheckBox
+                        value={typeFilters[type]}
+                        onValueChange={() => handleTypeFilterChange(type)}
+                      />
+                      <Text style={{marginLeft: 5}}>{type}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+
+              <View style={PokemonListStyles.filterButtonContainer}>
+                <TouchableOpacity
+                  onPress={submitFilter}
+                  style={PokemonListStyles.button}>
+                  <Text style={PokemonListStyles.buttonText}>Apply Filter</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={PokemonListStyles.button}>
+                  <Text style={PokemonListStyles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+          {/* <TouchableHighlight
+            onPress={() => {
+              setModalVisible(true);
+            }}>
+            <Text>Filter by type</Text>
+          </TouchableHighlight> */}
+          {/* <FlatList
+        data={pokemonData.filter(filterByType)}
+        renderItem={renderPokemon}
+        keyExtractor={pokemon => pokemon.id.toString()}
+      /> */}
+        </View>
+
+        {/* FILTER ends from here */}
       </View>
       {loading ? (
         <Loader />

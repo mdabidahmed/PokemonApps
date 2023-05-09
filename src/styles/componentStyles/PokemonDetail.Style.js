@@ -28,13 +28,7 @@ const PokemonDetailsStyles = StyleSheet.create({
     fontSize: FONT_SIZE.MD,
     paddingHorizontal: SIZES.sm,
   },
-  item: {
-    margin: 5,
-  },
-  close: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
+
   label: {
     fontSize: FONT_SIZE.MD,
     fontWeight: FONT_WEIGHT.BOLD,
@@ -139,6 +133,13 @@ const PokemonDetailsStyles = StyleSheet.create({
     width: ICON.DEFAULT_SIZE,
     height: ICON.DEFAULT_SIZE,
     resizeMode: 'contain',
+  },
+  item: {
+    margin: 5,
+  },
+  close: {
+    flex: 1,
+    alignItems: 'flex-end',
   },
   imgSize: {
     width: 160,

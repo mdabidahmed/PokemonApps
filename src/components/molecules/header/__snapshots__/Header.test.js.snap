@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderComponent renders correctly 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "paddingVertical": 8,
+      }
+    }
+  >
+    <Image
+      accessibilityLabel="Pokemon Logo image"
+      source={
+        {
+          "uri": "https://in.portal-pokemon.com/img/common/logo.png",
+        }
+      }
+      style={
+        {
+          "height": 50,
+          "resizeMode": "contain",
+          "width": 150,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "borderBottomColor": "#1A237E",
+          "borderBottomWidth": 0.5,
+          "marginVertical": 4,
+        }
+      }
+    />
+  </View>
+  <Text
+    style={
+      {
+        "color": "#212121",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "marginBottom": 4,
+        "paddingLeft": 8,
+      }
+    }
+  >
+    Test description
+  </Text>
+</RCTSafeAreaView>
+`;

@@ -91,4 +91,63 @@ export const PokemonListStyles = StyleSheet.create({
   headerContainer: {
     // marginTop: 160,
   },
+
+  filterButtonContainer: {
+    flexDirection: 'row',
+    // alignItems: 'center',
+    justifyContent: 'center',
+    // justifyContent: 'space-between',
+  },
+  button: {
+    backgroundColor: '#2c3e50',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    margin: 2,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  icon: {
+    width: ICON.DEFAULT_SIZE,
+    height: ICON.DEFAULT_SIZE,
+    resizeMode: 'contain',
+  },
+  item: {
+    margin: 5,
+  },
+  close: {
+    flex: 1,
+    alignItems: 'flex-end',
+  },
+  box: {
+    borderWidth: 2,
+    borderColor: 'black',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    margin: 20,
+    borderRadius: 10,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
+    paddingHorizontal: 20,
+    marginVertical: 20,
+    color: 'black',
+    borderBottomWidth: 0.5,
+    // borderBottomColor: 'black',
+  },
+  type: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingVertical: 10,
+    color: 'black',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'black',
+  },
+  closeContainer: {
+    marginBottom: 10,
+  },
 });
