@@ -8,7 +8,7 @@ import {
   getPokemonDetails,
   getPokemonType,
 } from '../../../services/api';
-import {filterUniqueById} from '../../../utils/filterUniqueById';
+import {filterUniqueById} from '../../../utils/fiterUniqueById/filterUniqueById';
 import {PokemonContext} from './PokemonContext';
 const API_BASE_URL = process.env.API_BASE_URL;
 export const PokemonProvider = ({children}) => {

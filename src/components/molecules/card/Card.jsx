@@ -6,7 +6,7 @@ import {COLORS, SINGLE_COLOR} from '../../../constants/color';
 import {PokemonContext} from '../../organism/context/PokemonContext';
 import CardStyles from './Card.Style';
 
-import {addLeadingZeros} from '../../../utils/leadingZeros';
+import {addLeadingZeros} from '../../../utils/leadingZeros/leadingZeros';
 const Card = ({pokemon}) => {
   const navigation = useNavigation();
 

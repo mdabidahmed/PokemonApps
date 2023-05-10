@@ -49,19 +49,3 @@ export const getPokemonDescription = async id => {
 export const getPokemonGender = id => {
   return axios.get(`${BASE_URL}/gender/${id}`);
 };
-
-// export const fetchPokemonListWithImage = async () => {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/pokemon?limit=20`);
-//     const pokemonList = response.data.results;
-//     return pokemonList.map((pokemon, index) => ({
-//       id: index + 1,
-//       name: pokemon.name,
-//       imageUrl: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${addLeadingZeros(
-//         index + 1,
-//       )}.png`,
-//     }));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };

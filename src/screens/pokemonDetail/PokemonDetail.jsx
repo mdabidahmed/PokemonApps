@@ -23,10 +23,10 @@ import {
   WEIGHT,
 } from '../../constants/string';
 import {COLOR_TOKEN} from '../../tokens/colors';
-import {concatenateProperty} from '../../utils/concatenateProperty';
-import {addLeadingZeros} from '../../utils/leadingZeros';
-import {meters_to_feet_and_inches} from '../../utils/lengthUtils';
-import {covert_Weight_to_Kg} from '../../utils/weightUtils';
+import {concatenateProperty} from '../../utils/concatenate/concatenateProperty';
+import {addLeadingZeros} from '../../utils/leadingZeros/leadingZeros';
+import {meters_to_feet_and_inches} from '../../utils/lengthUtils/lengthUtils';
+import {covert_Weight_to_Kg} from '../../utils/weightUtils/weightUtils';
 import PokemonDetailsStyles from './PokemonDetail.Style';
 const PokemonDetailComponent = item => {
   const pokemon = item.route.params.item;

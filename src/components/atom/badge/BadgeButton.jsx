@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {generateRandomColor} from '../../../utils/randomColor';
+import {generateRandomColor} from '../../../utils/randomColor/randomColor';
 import {ButtonStyles} from './BadgeButton.Style';
 
 const BadgeButton = ({badgeText, onPress}) => {

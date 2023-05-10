@@ -51,7 +51,7 @@ exports[`HeaderComponent renders correctly 1`] = `
   <Text
     style={
       {
-        "color": "#212121",
+        "color": "#11114e",
         "fontSize": 16,
         "fontWeight": "600",
         "marginBottom": 4,
