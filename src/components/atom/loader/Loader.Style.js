@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {SIZES} from '../../../tokens/size';
 export const LoaderStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -7,6 +8,6 @@ export const LoaderStyles = StyleSheet.create({
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10,
+    padding: SIZES.xs,
   },
 });

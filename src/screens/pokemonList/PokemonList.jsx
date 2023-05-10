@@ -85,6 +85,7 @@ const PokemonListComponent = () => {
   };
 
   useEffect(() => {
+    // Fetch Pokemon Card Details
     fetchPokemonCardDetails();
   }, [url]);
 
@@ -130,7 +131,7 @@ const PokemonListComponent = () => {
           </TouchableOpacity>
         </View>
 
-        {/* FILTER functionality */}
+        {/* FILTER functionality with Modal*/}
 
         <View>
           <Modal
@@ -145,6 +146,7 @@ const PokemonListComponent = () => {
                   PokemonListStyles.close,
                   PokemonListStyles.closeContainer,
                 ]}>
+                {/* Back button icon */}
                 <TouchableOpacity onPress={handleCloseModal}>
                   <Image
                     source={require('../../assets/icons/remove.png')}
@@ -174,7 +176,7 @@ const PokemonListComponent = () => {
                   ))}
                 </View>
               </View>
-
+              {/* Filter Button */}
               <View style={PokemonListStyles.filterButtonContainer}>
                 <TouchableOpacity
                   onPress={submitFilter}
@@ -197,10 +199,11 @@ const PokemonListComponent = () => {
         <Loader />
       ) : (
         <View>
+          {/* Filter Modal Section */}
           <View style={PokemonListStyles.cardContainer}>
             <Card pokemon={filteredPokemonList} />
           </View>
-
+          {/* Goto Previous page */}
           <View
             style={[PokemonListStyles.paginationSection, {width: width * 1}]}>
             <View style={PokemonListStyles.prevBtn}>
@@ -222,6 +225,7 @@ const PokemonListComponent = () => {
                 />
               </TouchableOpacity>
             </View>
+            {/* Goto Next page */}
             <View style={PokemonListStyles}>
               {nextUrl && (
                 <TouchableOpacity

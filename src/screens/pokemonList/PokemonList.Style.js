@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {COLOR_TOKEN} from '../../tokens/colors';
 import {FONT_SIZE, FONT_WEIGHT} from '../../tokens/fonts';
 import {SIZES} from '../../tokens/size';
-import {ICON} from '../../tokens/spacing';
+import {ICON, SPACING} from '../../tokens/spacing';
 export const PokemonListStyles = StyleSheet.create({
   container: {
     backgroundColor: COLOR_TOKEN.light_green_color_bg,
@@ -14,7 +14,7 @@ export const PokemonListStyles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: COLOR_TOKEN.light_green_color,
     borderRadius: SIZES.xs,
-    paddingVertical: 10,
+    paddingVertical: SIZES.xs,
   },
   title: {
     color: COLOR_TOKEN.white,
@@ -34,8 +34,8 @@ export const PokemonListStyles = StyleSheet.create({
     backgroundColor: COLOR_TOKEN.white,
     borderRadius: SIZES.xxs,
     marginLeft: 16,
-    paddingLeft: 8,
-    marginRight: 8,
+    paddingLeft: SPACING.PADDING_SM,
+    marginRight: SPACING.MARGIN_SM,
     borderColor: COLOR_TOKEN.primary,
     borderWidth: 2,
     width: '77%',
@@ -46,7 +46,7 @@ export const PokemonListStyles = StyleSheet.create({
     alignItems: 'center',
   },
   paginationSection: {
-    paddingVertical: 4,
+    paddingVertical: SPACING.PADDING_XS,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -59,7 +59,7 @@ export const PokemonListStyles = StyleSheet.create({
   filter: {
     width: SIZES.xl,
     height: SIZES.xl,
-    padding: 25,
+    padding: SPACING.PADDING_LG,
     borderRadius: SIZES.xxxs,
     backgroundColor: COLOR_TOKEN.primary,
     borderColor: COLOR_TOKEN.primary,
@@ -80,9 +80,9 @@ export const PokemonListStyles = StyleSheet.create({
   },
   button: {
     backgroundColor: COLOR_TOKEN.btn_bg,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 5,
+    paddingVertical: SIZES.xs,
+    paddingHorizontal: SIZES.md,
+    borderRadius: SIZES.xxxs,
     margin: 2,
   },
   buttonText: {
@@ -104,10 +104,10 @@ export const PokemonListStyles = StyleSheet.create({
   box: {
     borderWidth: 2,
     borderColor: COLOR_TOKEN.black,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    margin: 20,
-    borderRadius: 10,
+    paddingHorizontal: SIZES.sm,
+    paddingBottom: SIZES.sm,
+    margin: SIZES.sm,
+    borderRadius: SIZES.xs,
   },
   header: {
     fontSize: FONT_SIZE.XXL,
@@ -126,8 +126,9 @@ export const PokemonListStyles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderBottomColor: COLOR_TOKEN.black,
   },
+
   closeContainer: {
-    margin: 20,
+    margin: SIZES.sm,
   },
   checkboxSections: {
     flexDirection: 'row',
@@ -135,6 +136,6 @@ export const PokemonListStyles = StyleSheet.create({
     width: '50%',
   },
   checkboxValue: {
-    marginLeft: 5,
+    marginLeft: SIZES.xxxs,
   },
 });

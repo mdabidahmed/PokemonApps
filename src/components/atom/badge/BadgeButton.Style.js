@@ -1,16 +1,18 @@
 import {StyleSheet} from 'react-native';
 import {COLOR_TOKEN} from '../../../tokens/colors';
 import {FONT_SIZE, FONT_WEIGHT} from '../../../tokens/fonts';
+import {SIZES} from '../../../tokens/size';
+import {SPACING} from '../../../tokens/spacing';
 export const ButtonStyles = StyleSheet.create({
   button: {
     flexDirection: 'row',
-    marginTop: 5,
+    marginTop: SPACING.MARGIN_XS,
   },
   badge: {
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    borderRadius: SIZES.xxxs,
+    paddingHorizontal: SIZES.xs,
     paddingTop: 3,
-    paddingBottom: 4,
+    paddingBottom: SPACING.PADDING_XS,
     borderWidth: 1,
     borderColor: COLOR_TOKEN.black,
   },
@@ -23,6 +25,6 @@ export const ButtonStyles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   borderRadiusButton: {
-    borderRadius: 5,
+    borderRadius: SIZES.xxxs,
   },
 });

@@ -182,7 +182,7 @@ const PokemonDetailComponent = item => {
                 {pokemon.types.map(item => (
                   <View
                     key={item.slot}
-                    style={{paddingRight: 10, paddingTop: 5}}>
+                    style={PokemonDetailsStyles.typeSection}>
                     <BadgeButton badgeText={item.type.name} />
                   </View>
                 ))}

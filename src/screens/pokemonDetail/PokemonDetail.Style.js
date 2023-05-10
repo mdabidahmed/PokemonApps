@@ -135,7 +135,7 @@ const PokemonDetailsStyles = StyleSheet.create({
     resizeMode: 'contain',
   },
   item: {
-    margin: 5,
+    margin: SIZES.xxxs,
   },
   close: {
     flex: 1,
@@ -148,6 +148,10 @@ const PokemonDetailsStyles = StyleSheet.create({
   },
   detailSection: {
     marginTop: SIZES.sm,
+  },
+  typeSection: {
+    marginRight: SIZES.xs,
+    paddingTop: SIZES.xxs,
   },
 });
 
