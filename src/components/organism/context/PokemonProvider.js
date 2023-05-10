@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react';
 // import {useForm} from '../hook/useForm';
 
-import {TYPE_SELECTED} from '../constants/type';
-import {URL_GENDER} from '../constants/url';
+import {TYPE_SELECTED} from '../../../constants/type';
+import {URL_GENDER} from '../../../constants/url';
 import {
   getPokemonDescription,
   getPokemonDetails,
   getPokemonType,
-} from '../services/api';
-import {filterUniqueById} from '../utils/filterUniqueById';
+} from '../../../services/api';
+import {filterUniqueById} from '../../../utils/filterUniqueById';
 import {PokemonContext} from './PokemonContext';
 const API_BASE_URL = process.env.API_BASE_URL;
 export const PokemonProvider = ({children}) => {

@@ -12,7 +12,7 @@ export const PokemonListStyles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    backgroundColor: COLOR_TOKEN.light_green_color,
+    backgroundColor: COLOR_TOKEN.primary,
     borderRadius: SIZES.xs,
     paddingVertical: SIZES.xs,
   },
@@ -79,7 +79,7 @@ export const PokemonListStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: COLOR_TOKEN.btn_bg,
+    backgroundColor: COLOR_TOKEN.primary,
     paddingVertical: SIZES.xs,
     paddingHorizontal: SIZES.md,
     borderRadius: SIZES.xxxs,
@@ -88,6 +88,7 @@ export const PokemonListStyles = StyleSheet.create({
   buttonText: {
     color: COLOR_TOKEN.white,
     fontSize: FONT_SIZE.MD,
+    fontWeight: FONT_WEIGHT.MEDIUM,
   },
   icon: {
     width: ICON.DEFAULT_SIZE,
@@ -112,17 +113,16 @@ export const PokemonListStyles = StyleSheet.create({
   header: {
     fontSize: FONT_SIZE.XXL,
     fontWeight: FONT_WEIGHT.BOLD,
-    color: COLOR_TOKEN.black,
+    color: COLOR_TOKEN.primary,
     paddingHorizontal: 20,
     marginVertical: 20,
-    color: COLOR_TOKEN.black,
     borderBottomWidth: 0.5,
   },
   type: {
     fontSize: FONT_SIZE.MD,
     fontWeight: FONT_WEIGHT.BOLD,
     paddingVertical: 10,
-    color: COLOR_TOKEN.black,
+    color: COLOR_TOKEN.primary,
     borderBottomWidth: 0.5,
     borderBottomColor: COLOR_TOKEN.black,
   },
@@ -137,5 +137,6 @@ export const PokemonListStyles = StyleSheet.create({
   },
   checkboxValue: {
     marginLeft: SIZES.xxxs,
+    color: COLOR_TOKEN.black,
   },
 });

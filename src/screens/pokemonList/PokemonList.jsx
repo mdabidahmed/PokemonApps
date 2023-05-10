@@ -12,6 +12,7 @@ import {
 import Loader from '../../components/atom/loader/Loader';
 import Card from '../../components/molecules/card/Card';
 import HeaderComponent from '../../components/molecules/header/Header';
+import {PokemonContext} from '../../components/organism/context/PokemonContext';
 import {
   APPLY_FILTER,
   APP_NAME,
@@ -26,7 +27,6 @@ import {
   TYPE,
 } from '../../constants/string';
 import {TYPE_SELECTED} from '../../constants/type';
-import {PokemonContext} from '../../context/PokemonContext';
 import {getPokemonList} from '../../services/api';
 import {PokemonListStyles} from './PokemonList.Style';
 const PokemonListComponent = () => {

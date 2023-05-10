@@ -12,6 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import ProgressBar from 'react-native-progress/Bar';
 import BadgeButton from '../../components/atom/badge/BadgeButton';
+import {PokemonContext} from '../../components/organism/context/PokemonContext';
 import {
   GENDER,
   HEIGHT,
@@ -21,7 +22,6 @@ import {
   WEAK_AGAINST,
   WEIGHT,
 } from '../../constants/string';
-import {PokemonContext} from '../../context/PokemonContext';
 import {COLOR_TOKEN} from '../../tokens/colors';
 import {concatenateProperty} from '../../utils/concatenateProperty';
 import {addLeadingZeros} from '../../utils/leadingZeros';

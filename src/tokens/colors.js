@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 // tokens for colors
 
 export const COLOR_TOKEN = {
