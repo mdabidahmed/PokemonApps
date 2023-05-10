@@ -18,11 +18,13 @@ export const PokemonProvider = ({children}) => {
   const [pokeData, setPokeData] = useState([]);
   const [filteredPokemonList, setFilteredPokemonList] = useState(pokeData);
   const [weakAgainst, setWeakAgainst] = useState([]);
-
+  const [globalPokemons, setGlobalPokemons] = useState([]);
   // Call the getPokemonList function when the component mounts.
   useEffect(() => {
     // Fetch Description
     // fetchDescription();
+    // Fetch GlobalPokemon List
+    fetchGlobalPokemons();
     // Fetch Gender List
     fetchGender();
   }, []);
@@ -108,6 +110,96 @@ export const PokemonProvider = ({children}) => {
     }
   };
 
+  // Global Pokemon List
+
+  const fetchGlobalPokemons = async () => {
+    // const baseURL = process.env.API_BASE_URL;
+    // const res = await fetch(`${baseURL}pokemon?limit=100&offset=0`);
+    // const data = await res.json();
+
+    try {
+      const response = await fetch(
+        'https://pokeapi.co/api/v2/pokemon?limit=200',
+      );
+      const data = await response.json();
+      // console.log('data-->', data);
+      const promises = data.results.map(async pokemon => {
+        // console.log('pokemon', pokemon);
+        const res = await fetch(pokemon.url);
+        const data = await res.json();
+        // console.log('data-id-->', data.id);
+        return data;
+      });
+      const results = await Promise.all(promises);
+      // console.log('results-->', results);
+      setGlobalPokemons(results);
+      // return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const [typeSelected, setTypeSelected] = useState({
+    grass: false,
+    normal: false,
+    fighting: false,
+    flying: false,
+    poison: false,
+    ground: false,
+    rock: false,
+    bug: false,
+    ghost: false,
+    steel: false,
+    fire: false,
+    water: false,
+    electric: false,
+    psychic: false,
+    ice: false,
+    dragon: false,
+    dark: false,
+    fairy: false,
+    unknow: false,
+    shadow: false,
+  });
+
+  // setFilteredPokemonList(state => {
+  //   state = [...state, result];
+  //   const uniqueItems = filterUniqueById(state, 'id');
+  //   return uniqueItems;
+  // });
+
+  const [typeFilteredPokemons, setTypeFilteredPokemons] = useState([]);
+  // console.log('typeSelected', typeSelected);
+  console.log('filteredPokemons', typeFilteredPokemons);
+  const handleCheckbox = (name, checked) => {
+    // console.log('name-->', name);
+    // console.log('checked-->', checked);
+    setTypeSelected({
+      ...typeSelected,
+      [name]: checked,
+    });
+
+    if (checked) {
+      const filteredResults = globalPokemons.filter(pokemon =>
+        pokemon.types.map(type => type.type.name).includes(name),
+      );
+      setTypeFilteredPokemons(state => {
+        state = [...typeFilteredPokemons, ...filteredResults];
+        const uniqueItems = filterUniqueById(state, 'id');
+        return uniqueItems;
+      });
+    } else {
+      const filteredResults = typeFilteredPokemons.filter(
+        pokemon => !pokemon.types.map(type => type.type.name).includes(name),
+      );
+      setTypeFilteredPokemons(state => {
+        state = [...filteredResults];
+        const uniqueItems = filterUniqueById(state, 'id');
+        return uniqueItems;
+      });
+    }
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -123,6 +215,10 @@ export const PokemonProvider = ({children}) => {
         pokemonDescription,
         fetchDescription,
         fetchGender,
+        handleCheckbox,
+        typeFilteredPokemons,
+        typeSelected,
+        setTypeSelected,
       }}>
       {children}
     </PokemonContext.Provider>

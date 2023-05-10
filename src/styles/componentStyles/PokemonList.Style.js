@@ -137,7 +137,6 @@ export const PokemonListStyles = StyleSheet.create({
     marginVertical: 20,
     color: 'black',
     borderBottomWidth: 0.5,
-    // borderBottomColor: 'black',
   },
   type: {
     fontSize: 16,

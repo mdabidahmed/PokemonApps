@@ -27,84 +27,114 @@ const PokemonListComponent = () => {
   // const [modalVisible, setModalVisible] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
-  const [typeFilters, setTypeFilters] = useState({
-    normal: false,
-    fire: false,
-    water: false,
-    grass: false,
-    electric: false,
-    ice: false,
-    fighting: false,
-    poison: false,
-    ground: false,
-    flying: false,
-    psychic: false,
-    bug: false,
-    rock: false,
-    ghost: false,
-    dragon: false,
-    dark: false,
-    steel: false,
-    fairy: false,
-  });
+  // const [typeFilters, setTypeFilters] = useState({
+  //   normal: false,
+  //   fire: false,
+  //   water: false,
+  //   grass: false,
+  //   electric: false,
+  //   ice: false,
+  //   fighting: false,
+  //   poison: false,
+  //   ground: false,
+  //   flying: false,
+  //   psychic: false,
+  //   bug: false,
+  //   rock: false,
+  //   ghost: false,
+  //   dragon: false,
+  //   dark: false,
+  //   steel: false,
+  //   fairy: false,
+  // });
   const {
     getPokemon,
     pokeData,
     setPokeData,
     setFilteredPokemonList,
     filteredPokemonList,
+    handleCheckbox,
+    typeFilteredPokemons,
+    typeSelected,
+    setTypeSelected,
   } = useContext(PokemonContext);
 
-  const handleTypeFilterChange = type => {
-    setTypeFilters(prevFilters => ({
-      ...prevFilters,
-      [type]: !prevFilters[type],
-    }));
-  };
+  // const handleTypeFilterChange = type => {
+  //   setTypeFilters(prevFilters => ({
+  //     ...prevFilters,
+  //     [type]: !prevFilters[type],
+  //   }));
+  // };
 
-  function newfilteredPokemonList() {
-    if (pokeData) {
-      pokeData.filter(pokemon => {
-        console.log('inside', pokemon);
-        const typeFilters = [normal, fire, water];
-        const res = pokemon.types.some(type => typeFilters.includes(type));
+  // function newfilteredPokemonList() {
+  //   if (pokeData) {
+  //     pokeData.filter(pokemon => {
+  //       console.log('inside', pokemon);
+  //       const typeFilters = [normal, fire, water];
+  //       const res = pokemon.types.some(type => typeFilters.includes(type));
 
-        console.log('res--**', res);
-        return res;
-        // const typeFilters = Object.keys(typeFilters).filter(
-        //   type => typeFilters[type],
-        // );
+  //       console.log('res--**', res);
+  //       return res;
+  //       // const typeFilters = Object.keys(typeFilters).filter(
+  //       //   type => typeFilters[type],
+  //       // );
 
-        // if (typeFilters.length === 0) {
-        //   return true;
-        // }
+  //       // if (typeFilters.length === 0) {
+  //       //   return true;
+  //       // }
 
-        // return pokemon.types.some(type => typeFilters.includes(type));
-      });
-    }
-  }
+  //       // return pokemon.types.some(type => typeFilters.includes(type));
+  //     });
+  //   }
+  // }
 
   const submitFilter = () => {
-    newfilteredPokemonList();
+    setFilteredPokemonList(typeFilteredPokemons);
+    setShowModal(false);
   };
-  console.log('type-filter-->', typeFilters);
-  console.log('PokemonData-->', pokeData);
-  console.log('newfilteredPokemonList', newfilteredPokemonList);
+  const resetFilter = () => {
+    setTypeSelected({
+      grass: false,
+      normal: false,
+      fighting: false,
+      flying: false,
+      poison: false,
+      ground: false,
+      rock: false,
+      bug: false,
+      ghost: false,
+      steel: false,
+      fire: false,
+      water: false,
+      electric: false,
+      psychic: false,
+      ice: false,
+      dragon: false,
+      dark: false,
+      fairy: false,
+      unknown: false,
+      shadow: false,
+    });
+    setFilteredPokemonList(pokeData);
+  };
+  // console.log('type-filter-->', typeFilters);
+  // console.log('PokemonData-->', pokeData);
+  // console.log('newfilteredPokemonList', newfilteredPokemonList);
 
-  const toggleTypeSelection = type => {
-    if (selectedTypes.includes(type)) {
-      setSelectedTypes(selectedTypes.filter(t => t !== type));
-    } else {
-      setSelectedTypes([...selectedTypes, type]);
-    }
-  };
-  const filterByType = pokemon => {
-    if (selectedTypes.length === 0) {
-      return true;
-    } else {
-      return pokemon.types.some(type => selectedTypes.includes(type));
-    }
-  };
+  // const toggleTypeSelection = type => {
+  //   if (selectedTypes.includes(type)) {
+  //     setSelectedTypes(selectedTypes.filter(t => t !== type));
+  //   } else {
+  //     setSelectedTypes([...selectedTypes, type]);
+  //   }
+  // };
+  // const filterByType = pokemon => {
+  //   if (selectedTypes.length === 0) {
+  //     return true;
+  //   } else {
+  //     return pokemon.types.some(type => selectedTypes.includes(type));
+  //   }
+  // };
 
   const handleFilterIconPress = () => {
     setShowModal(true);
@@ -216,19 +246,23 @@ const PokemonListComponent = () => {
 
                 {/* Second row */}
                 <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                  {Object.keys(typeFilters).map(type => (
+                  {Object.entries(typeSelected).map(([name, value]) => (
                     <View
-                      key={type}
+                      key={name}
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
                         width: '50%',
                       }}>
                       <CheckBox
-                        value={typeFilters[type]}
-                        onValueChange={() => handleTypeFilterChange(type)}
+                        key={name}
+                        name={name}
+                        onValueChange={newValue =>
+                          handleCheckbox(name, newValue)
+                        }
+                        value={value}
                       />
-                      <Text style={{marginLeft: 5}}>{type}</Text>
+                      <Text style={{marginLeft: 5}}>{name}</Text>
                     </View>
                   ))}
                 </View>
@@ -240,7 +274,9 @@ const PokemonListComponent = () => {
                   style={PokemonListStyles.button}>
                   <Text style={PokemonListStyles.buttonText}>Apply Filter</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={PokemonListStyles.button}>
+                <TouchableOpacity
+                  style={PokemonListStyles.button}
+                  onPress={resetFilter}>
                   <Text style={PokemonListStyles.buttonText}>Reset</Text>
                 </TouchableOpacity>
               </View>
