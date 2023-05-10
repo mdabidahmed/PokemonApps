@@ -193,7 +193,7 @@ export const PokemonProvider = ({children}) => {
         pokemon => !pokemon.types.map(type => type.type.name).includes(name),
       );
       setTypeFilteredPokemons(state => {
-        state = [...filteredResults];
+        state = [...pokeData];
         const uniqueItems = filterUniqueById(state, 'id');
         return uniqueItems;
       });
