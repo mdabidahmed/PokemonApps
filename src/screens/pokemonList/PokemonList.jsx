@@ -9,14 +9,26 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Loader from '../components/atom/loader/Loader';
-import Card from '../components/molecules/card/Card';
-import HeaderComponent from '../components/molecules/header/Header';
-import {POKEMON_DESCRIPTION, SEARCH_PLACEHOLDER} from '../constants/string';
-import {PokemonContext} from '../context/PokemonContext';
-import {getPokemonList} from '../services/api';
-
-import {PokemonListStyles} from '../styles/componentStyles/PokemonList.Style';
+import Loader from '../../components/atom/loader/Loader';
+import Card from '../../components/molecules/card/Card';
+import HeaderComponent from '../../components/molecules/header/Header';
+import {
+  APPLY_FILTER,
+  APP_NAME,
+  CHEVROLET_LEFT_ALT_TEXT,
+  CHEVROLET_RIGHT_ALT_TEXT,
+  FILTER,
+  FILTER_ICON_ALT_TEXT,
+  GO_BACK_LISTING_PAGE_ALT_TEXT,
+  POKEMON_DESCRIPTION,
+  RESET,
+  SEARCH_PLACEHOLDER,
+  TYPE,
+} from '../../constants/string';
+import {TYPE_SELECTED} from '../../constants/type';
+import {PokemonContext} from '../../context/PokemonContext';
+import {getPokemonList} from '../../services/api';
+import {PokemonListStyles} from './PokemonList.Style';
 const PokemonListComponent = () => {
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(`${process.env.API_BASE_URL}/pokemon`);
@@ -24,29 +36,6 @@ const PokemonListComponent = () => {
   const [prevUrl, setPrevUrl] = useState();
   const [searchQuery, setSearchQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
-  // const [modalVisible, setModalVisible] = useState(false);
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
-  // const [typeFilters, setTypeFilters] = useState({
-  //   normal: false,
-  //   fire: false,
-  //   water: false,
-  //   grass: false,
-  //   electric: false,
-  //   ice: false,
-  //   fighting: false,
-  //   poison: false,
-  //   ground: false,
-  //   flying: false,
-  //   psychic: false,
-  //   bug: false,
-  //   rock: false,
-  //   ghost: false,
-  //   dragon: false,
-  //   dark: false,
-  //   steel: false,
-  //   fairy: false,
-  // });
   const {
     getPokemon,
     pokeData,
@@ -59,82 +48,14 @@ const PokemonListComponent = () => {
     setTypeSelected,
   } = useContext(PokemonContext);
 
-  // const handleTypeFilterChange = type => {
-  //   setTypeFilters(prevFilters => ({
-  //     ...prevFilters,
-  //     [type]: !prevFilters[type],
-  //   }));
-  // };
-
-  // function newfilteredPokemonList() {
-  //   if (pokeData) {
-  //     pokeData.filter(pokemon => {
-  //       console.log('inside', pokemon);
-  //       const typeFilters = [normal, fire, water];
-  //       const res = pokemon.types.some(type => typeFilters.includes(type));
-
-  //       console.log('res--**', res);
-  //       return res;
-  //       // const typeFilters = Object.keys(typeFilters).filter(
-  //       //   type => typeFilters[type],
-  //       // );
-
-  //       // if (typeFilters.length === 0) {
-  //       //   return true;
-  //       // }
-
-  //       // return pokemon.types.some(type => typeFilters.includes(type));
-  //     });
-  //   }
-  // }
-
   const submitFilter = () => {
     setFilteredPokemonList(typeFilteredPokemons);
     setShowModal(false);
   };
   const resetFilter = () => {
-    setTypeSelected({
-      grass: false,
-      normal: false,
-      fighting: false,
-      flying: false,
-      poison: false,
-      ground: false,
-      rock: false,
-      bug: false,
-      ghost: false,
-      steel: false,
-      fire: false,
-      water: false,
-      electric: false,
-      psychic: false,
-      ice: false,
-      dragon: false,
-      dark: false,
-      fairy: false,
-      unknown: false,
-      shadow: false,
-    });
+    setTypeSelected(TYPE_SELECTED);
     setFilteredPokemonList(pokeData);
   };
-  // console.log('type-filter-->', typeFilters);
-  // console.log('PokemonData-->', pokeData);
-  // console.log('newfilteredPokemonList', newfilteredPokemonList);
-
-  // const toggleTypeSelection = type => {
-  //   if (selectedTypes.includes(type)) {
-  //     setSelectedTypes(selectedTypes.filter(t => t !== type));
-  //   } else {
-  //     setSelectedTypes([...selectedTypes, type]);
-  //   }
-  // };
-  // const filterByType = pokemon => {
-  //   if (selectedTypes.length === 0) {
-  //     return true;
-  //   } else {
-  //     return pokemon.types.some(type => selectedTypes.includes(type));
-  //   }
-  // };
 
   const handleFilterIconPress = () => {
     setShowModal(true);
@@ -180,9 +101,9 @@ const PokemonListComponent = () => {
   const {width} = Dimensions.get('window');
   return (
     <View style={[PokemonListStyles.container]}>
-      <View style={PokemonListStyles.headerContainer}>
-        <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
-      </View>
+      {/* Header Component */}
+      <HeaderComponent title={APP_NAME} description={POKEMON_DESCRIPTION} />
+      {/* Filter user input field */}
       <View style={PokemonListStyles.filterContainer}>
         <View style={PokemonListStyles.inputContainer}>
           <TextInput
@@ -197,19 +118,19 @@ const PokemonListComponent = () => {
               });
             }}
           />
-
+          {/* Filter button */}
           <TouchableOpacity
             style={PokemonListStyles.filter}
             onPress={handleFilterIconPress}>
             <Image
-              source={require('../assets/icons/filters.png')}
+              source={require('../../assets/icons/filters.png')}
               style={PokemonListStyles.icon}
-              accessibilityLabel="Filter icon for getting result from filter"
+              alt={FILTER_ICON_ALT_TEXT}
             />
           </TouchableOpacity>
         </View>
 
-        {/* FILTER starts from here */}
+        {/* FILTER functionality */}
 
         <View>
           <Modal
@@ -226,34 +147,18 @@ const PokemonListComponent = () => {
                 ]}>
                 <TouchableOpacity onPress={handleCloseModal}>
                   <Image
-                    source={require('../assets/icons/remove.png')}
+                    source={require('../../assets/icons/remove.png')}
                     style={PokemonListStyles.icon}
-                    accessibilityLabel="Go back to Pokemon Listing Page"
+                    alt={GO_BACK_LISTING_PAGE_ALT_TEXT}
                   />
                 </TouchableOpacity>
               </View>
-              <Text style={PokemonListStyles.header}>Filter</Text>
+              <Text style={PokemonListStyles.header}>{FILTER}</Text>
               <View style={PokemonListStyles.box}>
-                <Text style={PokemonListStyles.type}>Type</Text>
-                {/* First row */}
-                {/* <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Text style={{marginLeft: 20}}>Show only favorites</Text>
-                  <CheckBox
-                    value={showOnlyFavorites}
-                    onValueChange={setShowOnlyFavorites}
-                  />
-                </View> */}
-
-                {/* Second row */}
+                <Text style={PokemonListStyles.type}>{TYPE}</Text>
                 <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                   {Object.entries(typeSelected).map(([name, value]) => (
-                    <View
-                      key={name}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        width: '50%',
-                      }}>
+                    <View key={name} style={PokemonListStyles.checkboxSections}>
                       <CheckBox
                         key={name}
                         name={name}
@@ -262,7 +167,9 @@ const PokemonListComponent = () => {
                         }
                         value={value}
                       />
-                      <Text style={{marginLeft: 5}}>{name}</Text>
+                      <Text style={PokemonListStyles.checkboxValue}>
+                        {name}
+                      </Text>
                     </View>
                   ))}
                 </View>
@@ -272,30 +179,19 @@ const PokemonListComponent = () => {
                 <TouchableOpacity
                   onPress={submitFilter}
                   style={PokemonListStyles.button}>
-                  <Text style={PokemonListStyles.buttonText}>Apply Filter</Text>
+                  <Text style={PokemonListStyles.buttonText}>
+                    {APPLY_FILTER}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={PokemonListStyles.button}
                   onPress={resetFilter}>
-                  <Text style={PokemonListStyles.buttonText}>Reset</Text>
+                  <Text style={PokemonListStyles.buttonText}>{RESET}</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </Modal>
-          {/* <TouchableHighlight
-            onPress={() => {
-              setModalVisible(true);
-            }}>
-            <Text>Filter by type</Text>
-          </TouchableHighlight> */}
-          {/* <FlatList
-        data={pokemonData.filter(filterByType)}
-        renderItem={renderPokemon}
-        keyExtractor={pokemon => pokemon.id.toString()}
-      /> */}
         </View>
-
-        {/* FILTER ends from here */}
       </View>
       {loading ? (
         <Loader />
@@ -320,9 +216,9 @@ const PokemonListComponent = () => {
                   paddingTop: 1,
                 }}>
                 <Image
-                  source={require('../assets/icons/left-chevron.png')}
+                  source={require('../../assets/icons/left-chevron.png')}
                   style={PokemonListStyles.icon}
-                  accessibilityLabel="Click button for List of previous 20 Pokemon Card"
+                  alt={CHEVROLET_LEFT_ALT_TEXT}
                 />
               </TouchableOpacity>
             </View>
@@ -338,9 +234,9 @@ const PokemonListComponent = () => {
                     paddingTop: 1,
                   }}>
                   <Image
-                    source={require('../assets/icons/right-chevron.png')}
+                    source={require('../../assets/icons/right-chevron.png')}
                     style={PokemonListStyles.icon}
-                    accessibilityLabel="Click button for List of next 20 Pokemon Card"
+                    alt={CHEVROLET_RIGHT_ALT_TEXT}
                   />
                 </TouchableOpacity>
               )}

@@ -18,3 +18,22 @@ export const TYPES = 'Types';
 export const READ_MORE = 'read more';
 
 export const WEAK_AGAINST = 'Weak Against';
+
+export const FILTER = 'Filter';
+
+export const TYPE = 'Type';
+
+export const APPLY_FILTER = 'Apply Filter';
+
+export const RESET = 'Reset';
+
+export const CHEVROLET_LEFT_ALT_TEXT =
+  'Click button for List of previous 20 Pokemon Card';
+
+export const CHEVROLET_RIGHT_ALT_TEXT =
+  'Click button for List of next 20 Pokemon Card';
+
+export const GO_BACK_LISTING_PAGE_ALT_TEXT = 'Go back to Pokemon Listing Page';
+
+export const FILTER_ICON_ALT_TEXT =
+  'Filter icon for getting result from filter';

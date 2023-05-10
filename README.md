@@ -51,31 +51,31 @@ Once the app is running, you can use it to browse through a list of Pokemon, vie
 
 # screenshot 1
 
-<img src="./src/assets/screenshots/Screenshot1.png" alt="Pokemon List" />
+<img src="./src/assets/screenshots/Screenshot1.png" alt="Pokemon List 1" />
 
 # screenshot 2
 
-<img src="./src/assets/screenshots/Screenshot2.png" alt="Pokemon Details 1" />
+<img src="./src/assets/screenshots/Screenshot2.png" alt="Pokemon Details 2" />
 
 # screenshot 3
 
-<img src="./src/assets/screenshots/Screenshot3.png" alt="Pokemon Details" />
+<img src="./src/assets/screenshots/Screenshot3.png" alt="Pokemon Details 3" />
 
 # screenshot 4
 
-<img src="./src/assets/screenshots/Screenshot4.png" alt="ReadMore Modal" />
+<img src="./src/assets/screenshots/Screenshot4.png" alt="ReadMore Modal 4" />
 
 # screenshot 5
 
-<img src="./src/assets/screenshots/Screenshot5.png" alt="Pokemon List" />
+<img src="./src/assets/screenshots/Screenshot5.png" alt="Pokemon List 5" />
 
 # screenshot 6
 
-<img src="./src/assets/screenshots/Screenshot6.png" alt="Pokemon Details 1" />
+<img src="./src/assets/screenshots/Screenshot6.png" alt="Pokemon Details 6" />
 
 # screenshot 7
 
-<img src="./src/assets/screenshots/Screenshot7.png" alt="Pokemon Details" />
+<img src="./src/assets/screenshots/Screenshot7.png" alt="Pokemon Details 7" />
 
 ## License
 

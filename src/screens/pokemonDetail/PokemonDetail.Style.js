@@ -24,7 +24,7 @@ const PokemonDetailsStyles = StyleSheet.create({
     width: 200,
   },
   descriptionText: {
-    color: COLOR_TOKEN.black,
+    color: COLOR_TOKEN.primary,
     fontSize: FONT_SIZE.MD,
     paddingHorizontal: SIZES.sm,
   },
@@ -65,10 +65,10 @@ const PokemonDetailsStyles = StyleSheet.create({
   image: {padding: SIZES.xs},
   cardNumber: {
     fontSize: FONT_SIZE.XXXL,
-    fontWeight: FONT_WEIGHT.MEDIUM,
+    fontWeight: FONT_WEIGHT.BOLD,
     fontFamily: FONT_FAMILY.PRIMARY,
     letterSpacing: 1,
-    color: COLOR_TOKEN.secondary,
+    color: COLOR_TOKEN.primary,
   },
   modalContainer: {
     backgroundColor: COLOR_TOKEN.dark_blue_bg,
@@ -102,7 +102,7 @@ const PokemonDetailsStyles = StyleSheet.create({
   },
   labelStats: {
     paddingLeft: SIZES.sm,
-    color: '#11114e',
+    color: COLOR_TOKEN.dark_navy_blue,
     width: '35%',
     fontWeight: FONT_WEIGHT.BOLD,
     textTransform: 'capitalize',

@@ -4,7 +4,7 @@ import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS, SINGLE_COLOR} from '../../../constants/color';
 import {PokemonContext} from '../../../context/PokemonContext';
-import CardStyles from '../../../styles/componentStyles/Card.Style';
+import CardStyles from './Card.Style';
 
 import {addLeadingZeros} from '../../../utils/leadingZeros';
 const Card = ({pokemon}) => {

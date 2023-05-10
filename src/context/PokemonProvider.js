@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 // import {useForm} from '../hook/useForm';
 
+import {TYPE_SELECTED} from '../constants/type';
 import {URL_GENDER} from '../constants/url';
 import {
   getPokemonDescription,
@@ -10,7 +11,6 @@ import {
 import {filterUniqueById} from '../utils/filterUniqueById';
 import {PokemonContext} from './PokemonContext';
 const API_BASE_URL = process.env.API_BASE_URL;
-const url = process.env.API_BASE_URL;
 export const PokemonProvider = ({children}) => {
   const [genderList, setGenderList] = useState([]);
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -21,8 +21,6 @@ export const PokemonProvider = ({children}) => {
   const [globalPokemons, setGlobalPokemons] = useState([]);
   // Call the getPokemonList function when the component mounts.
   useEffect(() => {
-    // Fetch Description
-    // fetchDescription();
     // Fetch GlobalPokemon List
     fetchGlobalPokemons();
     // Fetch Gender List
@@ -110,70 +108,28 @@ export const PokemonProvider = ({children}) => {
     }
   };
 
-  // Global Pokemon List
-
+  // Global Pokemon List limit is 200 i.e. 200 pokemon card will be displayed
+  // It takes a Pokemon ID as a parameter and uses the PokeAPI to retrieve the data.
   const fetchGlobalPokemons = async () => {
-    // const baseURL = process.env.API_BASE_URL;
-    // const res = await fetch(`${baseURL}pokemon?limit=100&offset=0`);
-    // const data = await res.json();
-
     try {
-      const response = await fetch(
-        'https://pokeapi.co/api/v2/pokemon?limit=200',
-      );
+      const response = await fetch(`${API_BASE_URL}/pokemon?limit=200`);
       const data = await response.json();
-      // console.log('data-->', data);
       const promises = data.results.map(async pokemon => {
-        // console.log('pokemon', pokemon);
         const res = await fetch(pokemon.url);
         const data = await res.json();
-        // console.log('data-id-->', data.id);
         return data;
       });
       const results = await Promise.all(promises);
-      // console.log('results-->', results);
       setGlobalPokemons(results);
-      // return data;
     } catch (error) {
       console.error(error);
     }
   };
 
-  const [typeSelected, setTypeSelected] = useState({
-    grass: false,
-    normal: false,
-    fighting: false,
-    flying: false,
-    poison: false,
-    ground: false,
-    rock: false,
-    bug: false,
-    ghost: false,
-    steel: false,
-    fire: false,
-    water: false,
-    electric: false,
-    psychic: false,
-    ice: false,
-    dragon: false,
-    dark: false,
-    fairy: false,
-    unknow: false,
-    shadow: false,
-  });
-
-  // setFilteredPokemonList(state => {
-  //   state = [...state, result];
-  //   const uniqueItems = filterUniqueById(state, 'id');
-  //   return uniqueItems;
-  // });
+  const [typeSelected, setTypeSelected] = useState(TYPE_SELECTED);
 
   const [typeFilteredPokemons, setTypeFilteredPokemons] = useState([]);
-  // console.log('typeSelected', typeSelected);
-  console.log('filteredPokemons', typeFilteredPokemons);
   const handleCheckbox = (name, checked) => {
-    // console.log('name-->', name);
-    // console.log('checked-->', checked);
     setTypeSelected({
       ...typeSelected,
       [name]: checked,
@@ -193,7 +149,7 @@ export const PokemonProvider = ({children}) => {
         pokemon => !pokemon.types.map(type => type.type.name).includes(name),
       );
       setTypeFilteredPokemons(state => {
-        state = [...pokeData];
+        state = [...filteredResults];
         const uniqueItems = filterUniqueById(state, 'id');
         return uniqueItems;
       });

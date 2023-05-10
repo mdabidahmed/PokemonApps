@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, SafeAreaView, Text, View} from 'react-native';
-import {HeaderStyles} from '../../../styles/componentStyles/HeaderStyles';
+import {HeaderStyles} from './HeaderStyles';
 const HeaderComponent = ({title, description}) => {
   return (
     <SafeAreaView style={HeaderStyles.container}>

@@ -25,6 +25,8 @@ export const COLOR_TOKEN = {
   dark_blue_bg: '#0f0c29',
   light_green_color: '#2196F3',
   light_green_color_bg: '#cfead9',
+  dark_navy_blue: '#11114e',
+  btn_bg: '#2c3e50',
   fighting: '#FCC1B0',
   flying: '#B2D2E8',
   poison: '#CFB7ED',

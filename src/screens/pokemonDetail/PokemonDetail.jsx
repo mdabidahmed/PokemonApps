@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ProgressBar from 'react-native-progress/Bar';
-import BadgeButton from '../components/atom/badge/BadgeButton';
+import BadgeButton from '../../components/atom/badge/BadgeButton';
 import {
   GENDER,
   HEIGHT,
@@ -20,13 +20,14 @@ import {
   TYPES,
   WEAK_AGAINST,
   WEIGHT,
-} from '../constants/string';
-import {PokemonContext} from '../context/PokemonContext';
-import PokemonDetailsStyles from '../styles/componentStyles/PokemonDetail.Style';
-import {concatenateProperty} from '../utils/concatenateProperty';
-import {addLeadingZeros} from '../utils/leadingZeros';
-import {meters_to_feet_and_inches} from '../utils/lengthUtils';
-import {covert_Weight_to_Kg} from '../utils/weightUtils';
+} from '../../constants/string';
+import {PokemonContext} from '../../context/PokemonContext';
+import {COLOR_TOKEN} from '../../tokens/colors';
+import {concatenateProperty} from '../../utils/concatenateProperty';
+import {addLeadingZeros} from '../../utils/leadingZeros';
+import {meters_to_feet_and_inches} from '../../utils/lengthUtils';
+import {covert_Weight_to_Kg} from '../../utils/weightUtils';
+import PokemonDetailsStyles from './PokemonDetail.Style';
 const PokemonDetailComponent = item => {
   const pokemon = item.route.params.item;
   const [modalVisible, setModalVisible] = useState(false);
@@ -66,7 +67,7 @@ const PokemonDetailComponent = item => {
               style={[PokemonDetailsStyles.item, PokemonDetailsStyles.close]}>
               <TouchableOpacity onPress={onClose}>
                 <Image
-                  source={require('../assets/icons/remove.png')}
+                  source={require('../../assets/icons/remove.png')}
                   style={PokemonDetailsStyles.icon}
                   accessibilityLabel="Go back to Pokemon Listing Page"
                 />
@@ -129,7 +130,7 @@ const PokemonDetailComponent = item => {
                   <TouchableOpacity onPress={() => setModalVisible(false)}>
                     <Text style={PokemonDetailsStyles.closeButton}>
                       <Image
-                        source={require('../assets/icons/cancel.png')}
+                        source={require('../../assets/icons/cancel.png')}
                         style={PokemonDetailsStyles.icon}
                         accessibilityLabel="Close button for Modal Close"
                       />
@@ -242,7 +243,7 @@ const PokemonDetailComponent = item => {
               </Text>
               <View>
                 <ProgressBar
-                  color="#11114e"
+                  color={COLOR_TOKEN.dark_navy_blue}
                   thickness={2}
                   progress={stat.base_stat / 100}
                   width={220}

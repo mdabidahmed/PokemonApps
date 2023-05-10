@@ -1,17 +1,14 @@
 import {StyleSheet} from 'react-native';
-import {COLOR_TOKEN} from '../../tokens/colors';
-import {FONT_SIZE, FONT_WEIGHT} from '../../tokens/fonts';
-import {SPACING} from '../../tokens/spacing';
+import {COLOR_TOKEN} from '../../../tokens/colors';
+import {FONT_SIZE, FONT_WEIGHT} from '../../../tokens/fonts';
+import {SPACING} from '../../../tokens/spacing';
 export const HeaderStyles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.MARGIN_MD,
-    // paddingVertical: SPACING.MARGIN_MD,
-    // marginTop: '45%',
   },
   description: {
     fontSize: FONT_SIZE.MD,
-    color: COLOR_TOKEN.gray900,
-    // lineHeight: 26,
+    color: COLOR_TOKEN.dark_navy_blue,
     marginBottom: SPACING.MARGIN_XS,
     fontWeight: FONT_WEIGHT.MEDIUM,
     paddingLeft: SPACING.PADDING_SM,

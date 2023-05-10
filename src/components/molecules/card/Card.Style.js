@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {COLOR_TOKEN} from '../../tokens/colors';
-import {FONT_FAMILY, FONT_SIZE, FONT_WEIGHT} from '../../tokens/fonts';
-import {SPACING} from '../../tokens/spacing';
+import {COLOR_TOKEN} from '../../../tokens/colors';
+import {FONT_FAMILY, FONT_SIZE, FONT_WEIGHT} from '../../../tokens/fonts';
+import {SPACING} from '../../../tokens/spacing';
 const CardStyles = StyleSheet.create({
   container: {
     alignItems: 'center',

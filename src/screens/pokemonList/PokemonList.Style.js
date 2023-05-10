@@ -6,15 +6,9 @@ import {ICON} from '../../tokens/spacing';
 export const PokemonListStyles = StyleSheet.create({
   container: {
     backgroundColor: COLOR_TOKEN.light_green_color_bg,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
     flex: 1,
-    // flexGrow: 1,
-    // marginBottom: 100,
     borderColor: COLOR_TOKEN.light_green_color_bg,
     borderBottomWidth: 100,
-    // borderColor: 'black',
   },
   button: {
     position: 'absolute',
@@ -34,16 +28,13 @@ export const PokemonListStyles = StyleSheet.create({
     alignItems: 'center',
 
     borderRadius: SIZES.xs,
-    // paddingHorizontal: SIZES.xs,
   },
   input: {
-    // paddingVertical: SIZES.xxs,
     fontSize: FONT_SIZE.MD,
     backgroundColor: COLOR_TOKEN.white,
     borderRadius: SIZES.xxs,
     marginLeft: 16,
     paddingLeft: 8,
-    // marginVertical: SIZES.xxxs,
     marginRight: 8,
     borderColor: COLOR_TOKEN.primary,
     borderWidth: 2,
@@ -55,16 +46,12 @@ export const PokemonListStyles = StyleSheet.create({
     alignItems: 'center',
   },
   paginationSection: {
-    // width: '100%',
-    // height: SIZES.xxs,
     paddingVertical: 4,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
-    // alignItems: 'center',
     backgroundColor: COLOR_TOKEN.primary,
-    // width: 420,
   },
   prevBtn: {
     marginRight: SIZES.sm,
@@ -76,7 +63,6 @@ export const PokemonListStyles = StyleSheet.create({
     borderRadius: SIZES.xxxs,
     backgroundColor: COLOR_TOKEN.primary,
     borderColor: COLOR_TOKEN.primary,
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -88,26 +74,20 @@ export const PokemonListStyles = StyleSheet.create({
   cardContainer: {
     height: '90%',
   },
-  headerContainer: {
-    // marginTop: 160,
-  },
-
   filterButtonContainer: {
     flexDirection: 'row',
-    // alignItems: 'center',
     justifyContent: 'center',
-    // justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: '#2c3e50',
+    backgroundColor: COLOR_TOKEN.btn_bg,
     paddingVertical: 10,
     paddingHorizontal: 30,
     borderRadius: 5,
     margin: 2,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 16,
+    color: COLOR_TOKEN.white,
+    fontSize: FONT_SIZE.MD,
   },
   icon: {
     width: ICON.DEFAULT_SIZE,
@@ -123,30 +103,38 @@ export const PokemonListStyles = StyleSheet.create({
   },
   box: {
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: COLOR_TOKEN.black,
     paddingHorizontal: 20,
     paddingBottom: 20,
     margin: 20,
     borderRadius: 10,
   },
   header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'black',
+    fontSize: FONT_SIZE.XXL,
+    fontWeight: FONT_WEIGHT.BOLD,
+    color: COLOR_TOKEN.black,
     paddingHorizontal: 20,
     marginVertical: 20,
-    color: 'black',
+    color: COLOR_TOKEN.black,
     borderBottomWidth: 0.5,
   },
   type: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: FONT_SIZE.MD,
+    fontWeight: FONT_WEIGHT.BOLD,
     paddingVertical: 10,
-    color: 'black',
+    color: COLOR_TOKEN.black,
     borderBottomWidth: 0.5,
-    borderBottomColor: 'black',
+    borderBottomColor: COLOR_TOKEN.black,
   },
   closeContainer: {
-    marginBottom: 10,
+    margin: 20,
+  },
+  checkboxSections: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '50%',
+  },
+  checkboxValue: {
+    marginLeft: 5,
   },
 });

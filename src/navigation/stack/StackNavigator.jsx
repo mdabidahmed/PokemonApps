@@ -3,8 +3,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import PokemonDetailComponent from '../../screens/PokemonDetail';
-import PokemonListComponent from '../../screens/PokemonList';
+import PokemonDetailComponent from '../../screens/pokemonDetail/PokemonDetail';
+import PokemonListComponent from '../../screens/pokemonList/PokemonList';
 
 const Stack = createNativeStackNavigator();
 
