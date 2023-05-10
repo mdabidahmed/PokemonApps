@@ -51,19 +51,19 @@ Once the app is running, you can use it to browse through a list of Pokemon, vie
 
 # screenshot 1
 
-<img src="../src/assets/screenshots/Screenshot1.png" alt="Pokemon List" />
+<img src="./src/assets/screenshots/Screenshot1.png" alt="Pokemon List" />
 
 # screenshot 2
 
-<img src="../assets/screenshots/Screenshot2.png" alt="Pokemon Details 1" />
+<img src="./src/assets/screenshots/Screenshot2.png" alt="Pokemon Details 1" />
 
 # screenshot 3
 
-<img src="../assets/screenshots/Screenshot3.png" alt="Pokemon Details" />
+<img src="./src/assets/screenshots/Screenshot3.png" alt="Pokemon Details" />
 
 # screenshot 4
 
-<img src="../assets/screenshots/Screenshot4.png" alt="ReadMore Modal" />
+<img src="./src/assets/screenshots/Screenshot4.png" alt="ReadMore Modal" />
 
 # screenshot 5
 
