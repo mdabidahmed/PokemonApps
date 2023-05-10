@@ -30,7 +30,7 @@ const Card = ({pokemon}) => {
           <LinearGradient colors={ColorGenerate()}>
             <Image
               source={{
-                uri: `${process.env.IMAGE_URL}/${id}.png`,
+                uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${item.name}.png`,
               }}
               accessibilityLabel="Pokemon Card List"
               style={CardStyles.imageCard}

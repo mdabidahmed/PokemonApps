@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tokens/spacing.js</title>
+    <title>Code coverage report for constants/color.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">tokens</a> spacing.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">constants</a> color.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -87,23 +87,7 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,39 +104,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const SPACING_TOKEN = {
-  // Spacing token
-  SPACING_XS: 4,
-  SPACING_SM: 8,
-  SPACING_MD: 16,
-  SPACING_LG: 24,
-  SPACING_XL: 32,
-  SPACING_XXL: 40,
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const COLORS = <span class="cstat-no" title="statement not covered" >{</span>
+  normal: '#DDCBD0',
+  fighting: '#FCC1B0',
+  flying: '#B2D2E8',
+  poison: '#CFB7ED',
+  ground: '#F4D1A6',
+  rock: '#C5AEA8',
+  bug: '#C1E0C8',
+  ghost: '#D7C2D7',
+  steel: '#C2D4CE',
+  fire: '#EDC2C4',
+  water: '#CBCDED',
+  grass: '#C0D4C8',
+  electric: '#E2E2A0',
+  psychic: '#DDC0CF',
+  ice: '#C7D7DF',
+  dragon: '#CADCDF',
+  dark: '#C6C5E3',
+  fairy: '#E4C0CF',
+  unknown: '#C0DFDD',
+  shadow: '#CACACA',
 };
 &nbsp;
-export const SPACING = {
-  MARGIN_XS: SPACING_TOKEN.SPACING_XS, //4
-  MARGIN_SM: SPACING_TOKEN.SPACING_SM, //8
-  MARGIN_MD: SPACING_TOKEN.SPACING_MD, //16
-  MARGIN_LG: SPACING_TOKEN.SPACING_LG, //24
-  MARGIN_XL: SPACING_TOKEN.SPACING_XL, //32
-  MARGIN_XXL: SPACING_TOKEN.SPACING_XXL, //40
-  // ... define other margin values
-&nbsp;
-  PADDING_XS: SPACING_TOKEN.SPACING_XS, //4
-  PADDING_SM: SPACING_TOKEN.SPACING_SM, //8
-  PADDING_MD: SPACING_TOKEN.SPACING_MD, //16
-  PADDING_LG: SPACING_TOKEN.SPACING_LG, //24
-  PADDING_XL: SPACING_TOKEN.SPACING_XL, //32
-  PADDING_XXL: SPACING_TOKEN.SPACING_XXL, //40
-};
-&nbsp;
-export const ICON = {
-  DEFAULT_SIZE: 24,
-};
+export const SINGLE_COLOR = <span class="cstat-no" title="statement not covered" >['#acb6e5', '#86fde8'];</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

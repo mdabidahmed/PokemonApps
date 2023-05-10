@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tokens/spacing.js</title>
+    <title>Code coverage report for components/atom/badge/BadgeButton.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">tokens</a> spacing.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">components/atom/badge</a> BadgeButton.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -92,18 +92,18 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,39 +120,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const SPACING_TOKEN = {
-  // Spacing token
-  SPACING_XS: 4,
-  SPACING_SM: 8,
-  SPACING_MD: 16,
-  SPACING_LG: 24,
-  SPACING_XL: 32,
-  SPACING_XXL: 40,
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useEffect, useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {ButtonStyles} from '../../../styles/componentStyles/Button.Style';
+import {generateRandomColor} from '../../../utils/randomColor';
+&nbsp;
+const BadgeButton = ({badgeText, onPress}) =&gt; {
+  const [backgroundColor, setBackgroundColor] = useState('#FCC1B0');
+  useEffect(() =&gt; {
+    setBackgroundColor(generateRandomColor());
+  }, []);
+&nbsp;
+  return (
+    &lt;TouchableOpacity onPress={onPress} testID="badge-button"&gt;
+      &lt;View style={ButtonStyles.button}&gt;
+        &lt;View
+          style={[
+            {backgroundColor: backgroundColor},
+            ButtonStyles.borderRadiusButton,
+          ]}&gt;
+          &lt;View style={ButtonStyles.badge}&gt;
+            &lt;Text style={ButtonStyles.badgeText}&gt;{badgeText}&lt;/Text&gt;
+          &lt;/View&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    &lt;/TouchableOpacity&gt;
+  );
 };
 &nbsp;
-export const SPACING = {
-  MARGIN_XS: SPACING_TOKEN.SPACING_XS, //4
-  MARGIN_SM: SPACING_TOKEN.SPACING_SM, //8
-  MARGIN_MD: SPACING_TOKEN.SPACING_MD, //16
-  MARGIN_LG: SPACING_TOKEN.SPACING_LG, //24
-  MARGIN_XL: SPACING_TOKEN.SPACING_XL, //32
-  MARGIN_XXL: SPACING_TOKEN.SPACING_XXL, //40
-  // ... define other margin values
-&nbsp;
-  PADDING_XS: SPACING_TOKEN.SPACING_XS, //4
-  PADDING_SM: SPACING_TOKEN.SPACING_SM, //8
-  PADDING_MD: SPACING_TOKEN.SPACING_MD, //16
-  PADDING_LG: SPACING_TOKEN.SPACING_LG, //24
-  PADDING_XL: SPACING_TOKEN.SPACING_XL, //32
-  PADDING_XXL: SPACING_TOKEN.SPACING_XXL, //40
-};
-&nbsp;
-export const ICON = {
-  DEFAULT_SIZE: 24,
-};
+export default BadgeButton;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -162,14 +159,14 @@ export const ICON = {
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2023-05-10T05:39:41.920Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
