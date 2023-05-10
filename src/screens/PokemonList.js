@@ -149,7 +149,7 @@ const PokemonListComponent = () => {
   };
   const {width} = Dimensions.get('window');
   return (
-    <View style={[PokemonListStyles.container]} testID="ptid">
+    <View style={[PokemonListStyles.container]}>
       <View style={PokemonListStyles.headerContainer}>
         <HeaderComponent title="Pokedex" description={POKEMON_DESCRIPTION} />
       </View>

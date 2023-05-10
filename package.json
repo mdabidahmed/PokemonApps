@@ -43,5 +43,8 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "testMatch": [
+    "<rootDir>/src/**/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ]
 }
