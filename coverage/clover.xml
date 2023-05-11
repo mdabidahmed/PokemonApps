@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683777543766" clover="3.2.0">
-  <project timestamp="1683777543767" name="All files">
+<coverage generated="1683780833912" clover="3.2.0">
+  <project timestamp="1683780833913" name="All files">
     <metrics statements="276" coveredstatements="91" conditionals="53" coveredconditionals="6" methods="78" coveredmethods="17" elements="407" coveredelements="114" complexity="0" loc="276" ncloc="276" packages="21" files="31" classes="31"/>
     <package name="components.atom.badge">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -252,15 +252,15 @@
         <line num="89" count="0" type="stmt"/>
         <line num="90" count="0" type="stmt"/>
         <line num="141" count="0" type="stmt"/>
-        <line num="152" count="0" type="stmt"/>
-        <line num="161" count="0" type="stmt"/>
-        <line num="169" count="0" type="stmt"/>
-        <line num="193" count="0" type="stmt"/>
-        <line num="222" count="0" type="stmt"/>
-        <line num="240" count="0" type="stmt"/>
-        <line num="254" count="0" type="stmt"/>
-        <line num="270" count="0" type="stmt"/>
-        <line num="285" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="196" count="0" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="257" count="0" type="stmt"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="288" count="0" type="stmt"/>
       </file>
     </package>
     <package name="screens.pokemonList">
