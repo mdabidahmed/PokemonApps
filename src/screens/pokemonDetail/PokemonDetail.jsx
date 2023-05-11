@@ -21,7 +21,7 @@ import {
   TYPES,
   WEAK_AGAINST,
   WEIGHT,
-} from '../../constants/string';
+} from '../../constants/string/strings';
 import {COLOR_TOKEN} from '../../tokens/colors';
 import {concatenateProperty} from '../../utils/concatenate/concatenateProperty';
 import {addLeadingZeros} from '../../utils/leadingZeros/leadingZeros';

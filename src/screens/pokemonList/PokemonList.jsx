@@ -25,8 +25,8 @@ import {
   RESET,
   SEARCH_PLACEHOLDER,
   TYPE,
-} from '../../constants/string';
-import {TYPE_SELECTED} from '../../constants/type';
+} from '../../constants/string/strings';
+import {TYPE_SELECTED} from '../../constants/type/type';
 import {getPokemonList} from '../../services/api';
 import {PokemonListStyles} from './PokemonList.Style';
 const PokemonListComponent = () => {

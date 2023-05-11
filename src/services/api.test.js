@@ -1,12 +1,13 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import {testData} from '../constants/testData';
 import {
   getPokemonDescription,
   getPokemonDetails,
   getPokemonGender,
   getPokemonList,
+  getPokemonType,
 } from './api';
-
 const BASE_URL = 'https://pokeapi.co/api/v2';
 
 describe('getPokemonGender', () => {
@@ -112,6 +113,22 @@ describe('getPokemonList', () => {
       .reply(200, response);
     try {
       const result = await getPokemonList(id);
+      expect(result).toEqual(response);
+    } catch (error) {
+      expect(error.message).toEqual('relativeURL.replace is not a function');
+    }
+  });
+});
+
+describe('getPokemonType', () => {
+  it('should return the Pokemon List', async () => {
+    const mock = new MockAdapter(axios);
+    const id = 6;
+    const results = testData;
+    const response = results;
+    mock.onGet(`https://pokeapi.co/api/v2/type/${id}`).reply(200, response);
+    try {
+      const result = await getPokemonType(id);
       expect(result).toEqual(response);
     } catch (error) {
       expect(error.message).toEqual('relativeURL.replace is not a function');

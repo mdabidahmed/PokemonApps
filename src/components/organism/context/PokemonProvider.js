@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 // import {useForm} from '../hook/useForm';
 
-import {TYPE_SELECTED} from '../../../constants/type';
-import {URL_GENDER} from '../../../constants/url';
+import {TYPE_SELECTED} from '../../../constants/type/type';
+import {URL_GENDER} from '../../../constants/url/url';
 import {
   getPokemonDescription,
   getPokemonDetails,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683734796970" clover="3.2.0">
-  <project timestamp="1683734796970" name="All files">
-    <metrics statements="269" coveredstatements="62" conditionals="48" coveredconditionals="6" methods="77" coveredmethods="16" elements="394" coveredelements="84" complexity="0" loc="269" ncloc="269" packages="17" files="30" classes="30"/>
+<coverage generated="1683768376095" clover="3.2.0">
+  <project timestamp="1683768376095" name="All files">
+    <metrics statements="270" coveredstatements="91" conditionals="48" coveredconditionals="6" methods="77" coveredmethods="17" elements="395" coveredelements="114" complexity="0" loc="270" ncloc="270" packages="21" files="31" classes="31"/>
     <package name="components.atom.badge">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="BadgeButton.Style.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\components\atom\badge\BadgeButton.Style.js">
@@ -159,43 +159,59 @@
       </file>
     </package>
     <package name="constants">
-      <metrics statements="25" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="color.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\color.js">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="testData.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\testData.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
       </file>
-      <file name="string.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\string.js">
-        <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
+    </package>
+    <package name="constants.color">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="color.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\color\color.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
       </file>
-      <file name="type.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\type.js">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="0" type="stmt"/>
+    </package>
+    <package name="constants.string">
+      <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="strings.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\string\strings.js">
+        <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
       </file>
-      <file name="url.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\url.js">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
+    </package>
+    <package name="constants.type">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="type.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\type\type.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="constants.url">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="url.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\constants\url\url.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
       </file>
     </package>
     <package name="navigation.stack">
@@ -299,9 +315,9 @@
       </file>
     </package>
     <package name="services">
-      <metrics statements="24" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+      <metrics statements="24" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
       <file name="api.js" path="C:\Users\mdaahmed\Desktop\Capstone\PokemonApps\src\services\api.js">
-        <metrics statements="24" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <metrics statements="24" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
@@ -315,9 +331,9 @@
         <line num="22" count="2" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="2" type="stmt"/>

@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useContext} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {COLORS, SINGLE_COLOR} from '../../../constants/color';
+import {COLORS, SINGLE_COLOR} from '../../../constants/color/color';
 import {PokemonContext} from '../../organism/context/PokemonContext';
 import CardStyles from './Card.Style';
 
