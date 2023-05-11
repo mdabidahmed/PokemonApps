@@ -1,6 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useContext, useEffect, useState} from 'react';
 import {
+  default as React,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
+import {
+  ActivityIndicator,
   Image,
   Modal,
   SafeAreaView,
@@ -31,6 +38,7 @@ import PokemonDetailsStyles from './PokemonDetail.Style';
 const PokemonDetailComponent = item => {
   const pokemon = item.route.params.item;
   const [modalVisible, setModalVisible] = useState(false);
+
   const navigation = useNavigation();
   const {
     genderList,
@@ -41,9 +49,36 @@ const PokemonDetailComponent = item => {
   } = useContext(PokemonContext);
 
   useEffect(() => {
-    findPokemonWeakness(pokemon.id);
-  }, []);
+    findPokemonWeakness(dispatch, pokemon.id);
+  }, [pokemon.id]);
 
+  const initialState = {
+    loading: true,
+    error: null,
+    pokemonType: null,
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'FETCH_SUCCESS':
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          pokemonType: action.payload,
+        };
+      case 'FETCH_ERROR':
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+          pokemonType: null,
+        };
+      default:
+        return state;
+    }
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
   const onClose = () => {
     navigation.navigate('Pokemon list');
   };
@@ -97,12 +132,19 @@ const PokemonDetailComponent = item => {
                 PokemonDetailsStyles.item,
                 PokemonDetailsStyles.description,
               ]}>
-              <Text style={PokemonDetailsStyles.descriptionText}>
-                {pokemonDescription &&
-                  pokemonDescription.flavor_text_entries.find(
-                    entry => entry.language.name === 'en',
-                  ).flavor_text}
-                {'...'}
+              <Text
+                style={PokemonDetailsStyles.descriptionText}
+                numberOfLines={10}>
+                {pokemonDescription ? (
+                  concatenateProperty(
+                    pokemonDescription.flavor_text_entries.filter(
+                      item => item.language.name === 'en',
+                    ),
+                    'flavor_text',
+                  )
+                ) : (
+                  <ActivityIndicator />
+                )}
               </Text>
               <TouchableOpacity onPress={handleReadMore}>
                 <Text style={PokemonDetailsStyles.readMore}>{READ_MORE}</Text>
@@ -222,14 +264,20 @@ const PokemonDetailComponent = item => {
           <View style={PokemonDetailsStyles.row}>
             <View style={[PokemonDetailsStyles.item, PokemonDetailsStyles.col]}>
               <Text style={PokemonDetailsStyles.label}>{WEAK_AGAINST}</Text>
-              <View style={PokemonDetailsStyles.fdrow}>
-                {weakAgainst &&
-                  weakAgainst.map((item, index) => (
-                    <View key={index} style={{paddingRight: 10, paddingTop: 5}}>
-                      <BadgeButton badgeText={item.name} />
-                    </View>
-                  ))}
-              </View>
+              {state.loading ? (
+                <ActivityIndicator />
+              ) : (
+                <View style={PokemonDetailsStyles.fdrow}>
+                  {state.pokemonType &&
+                    state.pokemonType.map((item, index) => (
+                      <View
+                        key={index}
+                        style={{paddingRight: 10, paddingTop: 5}}>
+                        <BadgeButton badgeText={item.name} />
+                      </View>
+                    ))}
+                </View>
+              )}
             </View>
           </View>
         </View>

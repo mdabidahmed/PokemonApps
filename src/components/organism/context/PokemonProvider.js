@@ -97,14 +97,15 @@ export const PokemonProvider = ({children}) => {
   };
   // This function fetches the list of weaknesses for a given Pokemon and returns it as an array of strings.
   // It takes a Pokemon ID as a parameter and uses the PokeAPI to retrieve the data.
-  const findPokemonWeakness = async id => {
+  const findPokemonWeakness = async (dispatch, id) => {
     try {
-      const result = await getPokemonType(id);
-      setWeakAgainst(result.damage_relations.double_damage_from);
-      return result;
+      const response = await getPokemonType(id);
+      dispatch({
+        type: 'FETCH_SUCCESS',
+        payload: response.damage_relations.double_damage_from,
+      });
     } catch (error) {
-      // If there is an error, log it to the console and re-throw the error.
-      console.log(error.message);
+      dispatch({type: 'FETCH_ERROR', payload: error.message});
     }
   };
 

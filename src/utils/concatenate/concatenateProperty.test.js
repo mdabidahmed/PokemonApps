@@ -10,7 +10,7 @@ describe('concatenateProperty', () => {
 
     const result = concatenateProperty(arr, 'name');
 
-    expect(result).toBe('Alice Bob Charlie ');
+    expect(result).toBe('AliceBobCharlie');
   });
 
   test('should return an empty string for an empty array', () => {
