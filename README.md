@@ -75,7 +75,7 @@ Once the app is running, you can use it to browse through a list of Pokemon, vie
 
 # screenshot 7
 
-<img src="./src/assets/screenshots/Screenshot7.png" alt="Pokemon readme modal 7" />
+<img src="./src/assets/screenshots/Screenshot7.png" alt="Pokemon readme modal container 7" />
 
 ## License
 
